@@ -20,11 +20,7 @@ package com.avbravp.mytitlefx.barchart;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.Tile.SkinType;
 import eu.hansolo.tilesfx.TileBuilder;
-import eu.hansolo.tilesfx.TimeSection;
-import eu.hansolo.tilesfx.TimeSectionBuilder;
-import eu.hansolo.tilesfx.chart.ChartData;
 import eu.hansolo.tilesfx.skins.BarChartItem;
-import eu.hansolo.tilesfx.tools.Country;
 import eu.hansolo.tilesfx.tools.FlowGridPane;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -37,16 +33,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
-import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 
@@ -76,20 +68,14 @@ public class BarchartDemo extends Application {
 
     @Override public void init() {
         long start = System.currentTimeMillis();
-
-
         value = new SimpleDoubleProperty(0);
-
-
-        // WorldMap Data
-
 
 
         // BarChart Items
         barChartItem1 = new BarChartItem("Gerrit", 47, Tile.BLUE);
         barChartItem2 = new BarChartItem("Sandra", 43, Tile.RED);
         barChartItem3 = new BarChartItem("Lilli", 12, Tile.GREEN);
-        barChartItem4 = new BarChartItem("Anton", 8, Tile.ORANGE);
+        barChartItem4 = new BarChartItem("Anton", 10, Tile.ORANGE);
 
         barChartItem1.setFormatString("%.1f kWh");
 
@@ -170,14 +156,10 @@ public class BarchartDemo extends Application {
     }
 
     @Override public void stop() {
-
         // useful for jpro
         timer.stop();
-
-
         System.exit(0);
     }
-
 
 
 
