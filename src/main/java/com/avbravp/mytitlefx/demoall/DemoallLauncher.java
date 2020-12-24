@@ -15,14 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.avbravp.mytitlefx;
+package com.avbravp.mytitlefx.demoall;
+
+import com.avbravp.mytitlefx.barchart.BarchartDemo;
 
 /**
  * User: divine threepwood
  * Date: 09.06.19
  * Time: 21:00
  */
-public class DemoLauncher {
+public class DemoallLauncher {
 
     /**
      *
@@ -34,6 +36,6 @@ public class DemoLauncher {
      * @param args application arguments
      */
     public static void main(String[] args) {
-        BarchartDemo.main(args);
+        Demoall.main(args);
     }
 }
