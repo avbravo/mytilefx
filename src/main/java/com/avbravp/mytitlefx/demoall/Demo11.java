@@ -95,7 +95,7 @@ import java.util.concurrent.TimeUnit;
  * Date: 19.12.16
  * Time: 12:54
  */
-public class Demoall extends Application {
+public class Demo11 extends Application {
     private static final    Random RND = new Random();
     private static final    double TILE_WIDTH  = 150;
     private static final    double TILE_HEIGHT = 150;
@@ -779,7 +779,7 @@ public class Demoall extends Application {
                                .skinType(SkinType.IMAGE)
                                .prefSize(TILE_WIDTH, TILE_HEIGHT)
                                .title("Image Tile")
-                               .image(new Image(Demoall.class.getResourceAsStream("HanSolo.png")))
+                               .image(new Image(Demo11.class.getResourceAsStream("HanSolo.png")))
                                .imageMask(ImageMask.ROUND)
                                .text("Whatever text")
                                .textAlignment(TextAlignment.CENTER)
@@ -833,7 +833,7 @@ public class Demoall extends Application {
                                       .title("ImageCounter Tile")
                                       .text("Whatever text")
                                       .description("Whatever\nnumbers")
-                                      .image(new Image(Demoall.class.getResourceAsStream("HanSolo.png")))
+                                      .image(new Image(Demo11.class.getResourceAsStream("HanSolo.png")))
                                       .imageMask(ImageMask.ROUND)
                                       .build();
 
@@ -1050,7 +1050,7 @@ public class Demoall extends Application {
                                   .text("Gerrit Grunwald")
                                   .decimals(0)
                                   .unit("$")
-                                  .image(new Image(Demoall.class.getResourceAsStream("HanSolo.png")))
+                                  .image(new Image(Demo11.class.getResourceAsStream("HanSolo.png")))
                                   .animated(true)
                                   .checkThreshold(true)
                                   .onTileEvent(e -> {

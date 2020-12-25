@@ -103,7 +103,8 @@ public class BarchartDemo extends Application {
     public void start(Stage stage) {
         long start = System.currentTimeMillis();
 
-       FlowGridPane pane = new FlowGridPane(8, 6, barChartTile);
+     FlowGridPane pane = new FlowGridPane(8, 6, barChartTile);
+    
     
 //        FlowGridPane pane = new FlowGridPane(8, 6,
 //                                             percentageTile, clockTile, gaugeTile, sparkLineTile, areaChartTile,

@@ -17,7 +17,7 @@
  */
 package com.avbravp.mytitlefx.barchart;
 
-import com.avbravp.mytitlefx.demoall.Demo1;
+
 
 /**
  * User: divine threepwood
@@ -36,6 +36,6 @@ public class BarchartDemoLauncher {
      * @param args application arguments
      */
     public static void main(String[] args) {
-        Demo1.main(args);
+        BarchartDemo.main(args);
     }
 }
