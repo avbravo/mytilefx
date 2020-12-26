@@ -17,7 +17,6 @@
  */
 package com.avbravp.mytitlefx;
 
-import com.avbravp.mytitlefx.demoall.Demo11;
 import eu.hansolo.tilesfx.Section;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.Tile.SkinType;
@@ -30,13 +29,10 @@ import eu.hansolo.tilesfx.addons.Indicator;
 import eu.hansolo.tilesfx.chart.ChartData;
 import eu.hansolo.tilesfx.chart.RadarChartMode;
 import eu.hansolo.tilesfx.chart.SunburstChart;
-import eu.hansolo.tilesfx.chart.TilesFXSeries;
 import eu.hansolo.tilesfx.colors.Bright;
 import eu.hansolo.tilesfx.colors.ColorSkin;
 import eu.hansolo.tilesfx.colors.Dark;
-import eu.hansolo.tilesfx.events.TileEvent;
 import eu.hansolo.tilesfx.icons.Flag;
-import eu.hansolo.tilesfx.skins.BarChartItem;
 
 import eu.hansolo.tilesfx.tools.Country;
 import eu.hansolo.tilesfx.tools.FlowGridPane;
@@ -47,7 +43,6 @@ import eu.hansolo.tilesfx.tools.Rank;
 import eu.hansolo.tilesfx.tools.Ranking;
 import eu.hansolo.tilesfx.tools.TreeNode;
 import java.time.Duration;
-import java.time.Instant;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
@@ -81,9 +76,6 @@ import java.util.concurrent.TimeUnit;
 import static javafx.application.Application.launch;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.text.TextAlignment;
 
@@ -168,7 +160,7 @@ public class LeaderBoardItem extends Application {
     private Tile            fireSmokeTile;
     private Tile            gauge2Tile;
     private Tile            happinessTile;
-    private Tile            radialDistributionTile;
+
 
 
     private long            lastTimerCall;
@@ -185,15 +177,6 @@ public class LeaderBoardItem extends Application {
 
 
 
-        XYChart.Series<String, Number> series3 = new XYChart.Series();
-        series3.setName("Outside");
-        series3.getData().add(new XYChart.Data("MO", 8));
-        series3.getData().add(new XYChart.Data("TU", 5));
-        series3.getData().add(new XYChart.Data("WE", 0));
-        series3.getData().add(new XYChart.Data("TH", 2));
-        series3.getData().add(new XYChart.Data("FR", 4));
-        series3.getData().add(new XYChart.Data("SA", 3));
-        series3.getData().add(new XYChart.Data("SU", 5));
 
         // WorldMap Data
         for (int i = 0; i < Country.values().length ; i++) {
@@ -1010,32 +993,7 @@ public class LeaderBoardItem extends Application {
             glucoseData.add(new ChartData("", RND.nextDouble() * 300 + 50));
         }
 
-        radialDistributionTile = TileBuilder.create()
-                                            .skinType(SkinType.RADIAL_DISTRIBUTION)
-                                            .title("RadialDistribution Tile")
-                                            .text("Whatever")
-                                            .description("Description")
-                                            .minValue(0)
-                                            .maxValue(400)
-                                            .lowerThreshold(70)
-                                            .threshold(140)
-                                            .tickLabelDecimals(0)
-                                            .decimals(0)
-                                            .chartData(glucoseData)
-                                            .barColor(Color.rgb(254, 1, 154))
-                                            .gradientStops(new Stop(0, Helper.getColorWithOpacity(Color.RED, 0.1)),
-                                                           new Stop(0.1375, Helper.getColorWithOpacity(Color.RED, 0.1)),
-                                                           new Stop(0.15625, Helper.getColorWithOpacity(Color.web("#FA711F"), 0.1)),
-                                                           new Stop(0.175, Helper.getColorWithOpacity(ColorSkin.GREEN, 0.1)),
-                                                           new Stop(0.2625, Helper.getColorWithOpacity(ColorSkin.GREEN, 0.1)),
-                                                           new Stop(0.35, Helper.getColorWithOpacity(ColorSkin.GREEN, 0.1)),
-                                                           new Stop(0.3501, Helper.getColorWithOpacity(ColorSkin.YELLOW, 0.1)),
-                                                           new Stop(0.45, Helper.getColorWithOpacity(Color.web("#FA711F"), 0.1)),
-                                                           new Stop(0.6625, Helper.getColorWithOpacity(Color.web("#FA711F"), 0.1)),
-                                                           new Stop(0.875, Helper.getColorWithOpacity(Color.RED, 0.1)),
-                                                           new Stop(1.0, Helper.getColorWithOpacity(Color.RED, 0.1)))
-                                            .strokeWithGradient(true)
-                                            .build();
+
 
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
