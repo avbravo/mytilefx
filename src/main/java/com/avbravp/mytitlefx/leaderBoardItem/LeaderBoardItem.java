@@ -97,10 +97,6 @@ public class LeaderBoardItem extends Application {
     private static final double TILE_HEIGHT = 150;
     private int noOfNodes = 0;
 
-  private BarChartItem    barChartItem1;
-    private BarChartItem    barChartItem2;
-    private BarChartItem    barChartItem3;
-    private BarChartItem    barChartItem4;
 
     private eu.hansolo.tilesfx.skins.LeaderBoardItem leaderBoardItem1;
     private eu.hansolo.tilesfx.skins.LeaderBoardItem leaderBoardItem2;
@@ -251,13 +247,7 @@ public class LeaderBoardItem extends Application {
         timeSection.setOnTimeSectionEntered(e -> System.out.println("Section ACTIVE"));
         timeSection.setOnTimeSectionLeft(e -> System.out.println("Section INACTIVE"));
 
-        // BarChart Items
-        barChartItem1 = new BarChartItem("Gerrit", 47, Tile.BLUE);
-        barChartItem2 = new BarChartItem("Sandra", 43, Tile.RED);
-        barChartItem3 = new BarChartItem("Lilli", 12, Tile.GREEN);
-        barChartItem4 = new BarChartItem("Anton", 8, Tile.ORANGE);
-
-        barChartItem1.setFormatString("%.1f kWh");
+       
 
         // LeaderBoard Items
         leaderBoardItem1 = new eu.hansolo.tilesfx.skins.LeaderBoardItem("Gerrit", 47);
@@ -440,14 +430,7 @@ public class LeaderBoardItem extends Application {
                               .textVisible(true)
                               .build();
 
-        barChartTile = TileBuilder.create()
-                                  .skinType(SkinType.BAR_CHART)
-                                  .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                  .title("BarChart Tile")
-                                  .text("Whatever text")
-                                  .barChartItems(barChartItem1, barChartItem2, barChartItem3, barChartItem4)
-                                  .decimals(0)
-                                  .build();
+     
 
         customTile = TileBuilder.create()
                                 .skinType(SkinType.CUSTOM)
