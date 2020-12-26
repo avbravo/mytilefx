@@ -157,9 +157,9 @@ public class LeaderBoardItem extends Application {
     private Tile            colorTile;
     private Tile            turnoverTile;
     private Tile            fluidTile;
-    private Tile            fireSmokeTile;
-    private Tile            gauge2Tile;
-    private Tile            happinessTile;
+
+//    private Tile            gauge2Tile;
+
 
 
 
@@ -912,58 +912,10 @@ public class LeaderBoardItem extends Application {
         VBox dataTable = new VBox(0, header, usa, brazil, uk, spain, italy, germany, france);
         dataTable.setFillWidth(true);
 
-        customFlagChartTile = TileBuilder.create()
-                                         .skinType(SkinType.CUSTOM)
-                                         .title("Custom Tile Covid-19")
-                                         .text("Data from 26.05.2020")
-                                         .graphic(dataTable)
-                                         .build();
 
-        colorTile = TileBuilder.create().skinType(SkinType.COLOR)
-                           .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                           .title("Color Tile")
-                           .description("Whatever")
-                           .animated(false)
-                           .build();
 
-      
 
-        fluidTile = TileBuilder.create().skinType(SkinType.FLUID)
-                               .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                               .title("Fluid Tile")
-                               .text("Waterlevel")
-                               .unit("\u0025")
-                               .decimals(0)
-                               .barColor(Tile.BLUE) // defines the fluid color, alternatively use sections or gradientstops
-                               .animated(true)
-                               .build();
 
-        fireSmokeTile = TileBuilder.create().skinType(SkinType.FIRE_SMOKE)
-                                   .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                   .title("FireSmoke Tile")
-                                   .text("CPU temp")
-                                   .unit("\u00b0C")
-                                   .threshold(40) // triggers the fire and smoke effect
-                                   .decimals(0)
-                                   .animated(true)
-                                   .build();
-
-        gauge2Tile = TileBuilder.create()
-                                .skinType(SkinType.GAUGE2)
-                                .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                .title("Gauge2 Tile")
-                                .text("Whatever")
-                                .unit("Unit")
-                                .textVisible(true)
-                                .value(0)
-                                .gradientStops(new Stop(0, Tile.BLUE),
-                                               new Stop(0.25, Tile.GREEN),
-                                               new Stop(0.5, Tile.YELLOW),
-                                               new Stop(0.75, Tile.ORANGE),
-                                               new Stop(1, Tile.RED))
-                                .strokeWithGradient(true)
-                                .animated(true)
-                                .build();
 
 
         HappinessIndicator happy   = new HappinessIndicator(Happiness.HAPPY, 0.67);
@@ -977,16 +929,7 @@ public class LeaderBoardItem extends Application {
         HBox.setHgrow(neutral, Priority.ALWAYS);
         HBox.setHgrow(unhappy, Priority.ALWAYS);
 
-        happinessTile = TileBuilder.create()
-                                   .skinType(SkinType.CUSTOM)
-                                   .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                   .title("Custom Tile Happiness")
-                                   .text("Whatever")
-                                   .textVisible(true)
-                                   .graphic(happiness)
-                                   .value(0)
-                                   .animated(true)
-                                   .build();
+
 
         List<ChartData> glucoseData = new ArrayList<>();
         for (int i = 0 ; i < 288; i++) {
