@@ -112,10 +112,7 @@ public class LeaderBoardItem extends Application {
     private ChartData       chartData7;
     private ChartData       chartData8;
 
-    private ChartData       smoothChartData1;
-    private ChartData       smoothChartData2;
-    private ChartData       smoothChartData3;
-    private ChartData       smoothChartData4;
+
 
     private Rank            firstRank;
 
@@ -145,7 +142,7 @@ public class LeaderBoardItem extends Application {
     private Tile            gaugeSparkLineTile;
     private Tile            radarChartTile1;
     private Tile            radarChartTile2;
-    private Tile            smoothAreaChartTile;
+
     private Tile            countryTile;
     private Tile            characterTile;
     private Tile            flipTile;
@@ -265,10 +262,6 @@ public class LeaderBoardItem extends Application {
         chartData7 = new ChartData("Item 7", 13.0, Tile.BLUE);
         chartData8 = new ChartData("Item 8", 13.0, Tile.BLUE);
 
-        smoothChartData1 = new ChartData("Item 1", RND.nextDouble() * 25, Tile.BLUE);
-        smoothChartData2 = new ChartData("Item 2", RND.nextDouble() * 25, Tile.BLUE);
-        smoothChartData3 = new ChartData("Item 3", RND.nextDouble() * 25, Tile.BLUE);
-        smoothChartData4 = new ChartData("Item 4", RND.nextDouble() * 25, Tile.BLUE);
 
         // Creating Tiles
         percentageTile = TileBuilder.create()
@@ -572,19 +565,7 @@ public class LeaderBoardItem extends Application {
                                      .animated(true)
                                      .build();
 
-        smoothAreaChartTile = TileBuilder.create().skinType(SkinType.SMOOTH_AREA_CHART)
-                                         .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                         .minValue(0)
-                                         .maxValue(40)
-                                         .title("SmoothAreaChart Tile")
-                                         .unit("Unit")
-                                         .text("Test")
-                                         //.chartType(ChartType.LINE)
-                                         //.dataPointsVisible(true)
-                                         .chartData(smoothChartData1, smoothChartData2, smoothChartData3, smoothChartData4)
-                                         .tooltipText("")
-                                         .animated(true)
-                                         .build();
+
 
         firstRank = new Rank(Ranking.FIRST, Tile.YELLOW_ORANGE);
 
