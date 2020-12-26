@@ -15,7 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.avbravp.mytitlefx.barchart;
+package com.avbravp.mytitlefx;
+
+import javafx.application.Application;
 
 
 
@@ -36,6 +38,7 @@ public class BarchartDemoLauncher {
      * @param args application arguments
      */
     public static void main(String[] args) {
-        BarchartDemo.main(args);
+          Application.launch(BarchartDemo.class, args);
+ //       BarchartDemo.main(args);
     }
 }

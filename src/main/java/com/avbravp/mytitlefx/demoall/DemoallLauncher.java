@@ -17,7 +17,7 @@
  */
 package com.avbravp.mytitlefx.demoall;
 
-import com.avbravp.mytitlefx.barchart.BarchartDemo;
+import com.avbravp.mytitlefx.BarchartDemo;
 import com.avbravp.mytitlefx.demoall.Demo11;
 
 /**
