@@ -120,8 +120,8 @@ public class LeaderBoardItem extends Application {
     private Tile            clockTile;
     private Tile            gaugeTile;
     private Tile            sparkLineTile;
-    private Tile            areaChartTile;
-    private Tile            lineChartTile;
+
+
     private Tile            highLowTile;
     private Tile            timerControlTile;
     private Tile            numberTile;
@@ -182,27 +182,8 @@ public class LeaderBoardItem extends Application {
 
         value = new SimpleDoubleProperty(0);
 
-        // AreaChart Data
-        XYChart.Series<String, Number> series1 = new XYChart.Series();
-        series1.setName("Whatever");
-        series1.getData().add(new XYChart.Data("MO", 23));
-        series1.getData().add(new XYChart.Data("TU", 21));
-        series1.getData().add(new XYChart.Data("WE", 20));
-        series1.getData().add(new XYChart.Data("TH", 22));
-        series1.getData().add(new XYChart.Data("FR", 24));
-        series1.getData().add(new XYChart.Data("SA", 22));
-        series1.getData().add(new XYChart.Data("SU", 20));
 
-        // LineChart Data
-        XYChart.Series<String, Number> series2 = new XYChart.Series();
-        series2.setName("Inside");
-        series2.getData().add(new XYChart.Data("MO", 8));
-        series2.getData().add(new XYChart.Data("TU", 5));
-        series2.getData().add(new XYChart.Data("WE", 0));
-        series2.getData().add(new XYChart.Data("TH", 2));
-        series2.getData().add(new XYChart.Data("FR", 4));
-        series2.getData().add(new XYChart.Data("SA", 3));
-        series2.getData().add(new XYChart.Data("SU", 5));
+
 
         XYChart.Series<String, Number> series3 = new XYChart.Series();
         series3.setName("Outside");
@@ -303,32 +284,7 @@ public class LeaderBoardItem extends Application {
                                    //.smoothing(true)
                                    .build();
 
-        //sparkLineTile.valueProperty().bind(value);
 
-        areaChartTile = TileBuilder.create()
-                                   .skinType(SkinType.SMOOTHED_CHART)
-                                   .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                   .title("SmoothedChart Tile")
-                                   .chartType(Tile.ChartType.AREA)
-                                   //.animated(true)
-                                   .smoothing(true)
-                                   .tooltipTimeout(1000)
-                                   .tilesFxSeries(new TilesFXSeries<>(series1,
-                                                               Tile.BLUE,
-                                                               new LinearGradient(0, 0, 0, 1,
-                                                                                  true, CycleMethod.NO_CYCLE,
-                                                                                  new Stop(0, Tile.BLUE),
-                                                                                  new Stop(1, Color.TRANSPARENT))))
-                                   .build();
-
-        lineChartTile = TileBuilder.create()
-                                   .skinType(SkinType.SMOOTHED_CHART)
-                                   .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                   .title("SmoothedChart Tile")
-                                   //.animated(true)
-                                   .smoothing(false)
-                                   .series(series2, series3)
-                                   .build();
 
         highLowTile = TileBuilder.create()
                                  .skinType(SkinType.HIGH_LOW)
