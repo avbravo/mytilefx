@@ -18,6 +18,7 @@
 package com.avbravp.mytitlefx.demoall;
 
 import com.avbravp.mytitlefx.barchart.BarchartDemo;
+import com.avbravp.mytitlefx.demoall.Demo11;
 
 /**
  * User: divine threepwood
@@ -36,6 +37,6 @@ public class DemoallLauncher {
      * @param args application arguments
      */
     public static void main(String[] args) {
-        Demoall.main(args);
+        Demo11.main(args);
     }
 }

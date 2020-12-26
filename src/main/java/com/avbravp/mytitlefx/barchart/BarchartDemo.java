@@ -20,11 +20,7 @@ package com.avbravp.mytitlefx.barchart;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.Tile.SkinType;
 import eu.hansolo.tilesfx.TileBuilder;
-import eu.hansolo.tilesfx.TimeSection;
-import eu.hansolo.tilesfx.TimeSectionBuilder;
-import eu.hansolo.tilesfx.chart.ChartData;
 import eu.hansolo.tilesfx.skins.BarChartItem;
-import eu.hansolo.tilesfx.tools.Country;
 import eu.hansolo.tilesfx.tools.FlowGridPane;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -37,82 +33,64 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
-import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-
 /**
- * User: hansolo
- * Date: 19.12.16
- * Time: 12:54
+ * User: hansolo Date: 19.12.16 Time: 12:54
  */
 public class BarchartDemo extends Application {
-    private static final    Random RND = new Random();
-    private static final    double TILE_WIDTH  = 150;
-    private static final    double TILE_HEIGHT = 150;
-    private                 int    noOfNodes = 0;
 
-    private BarChartItem    barChartItem1;
-    private BarChartItem    barChartItem2;
-    private BarChartItem    barChartItem3;
-    private BarChartItem    barChartItem4;
+    private static final Random RND = new Random();
+    private static final double TILE_WIDTH = 150;
+    private static final double TILE_HEIGHT = 150;
+    private int noOfNodes = 0;
 
-   private Tile            barChartTile;
+    private BarChartItem barChartItem1;
+    private BarChartItem barChartItem2;
+    private BarChartItem barChartItem3;
+    private BarChartItem barChartItem4;
 
+    private Tile barChartTile;
 
-    private long            lastTimerCall;
-    private AnimationTimer  timer;
-    private DoubleProperty  value;
+    private long lastTimerCall;
+    private AnimationTimer timer;
+    private DoubleProperty value;
 
-
-    @Override public void init() {
+    @Override
+    public void init() {
         long start = System.currentTimeMillis();
-
-
         value = new SimpleDoubleProperty(0);
-
-
-        // WorldMap Data
-
-
 
         // BarChart Items
         barChartItem1 = new BarChartItem("Gerrit", 47, Tile.BLUE);
         barChartItem2 = new BarChartItem("Sandra", 43, Tile.RED);
         barChartItem3 = new BarChartItem("Lilli", 12, Tile.GREEN);
-        barChartItem4 = new BarChartItem("Anton", 8, Tile.ORANGE);
+        barChartItem4 = new BarChartItem("Anton", 10, Tile.ORANGE);
 
         barChartItem1.setFormatString("%.1f kWh");
 
-   
         barChartTile = TileBuilder.create()
-                                  .skinType(SkinType.BAR_CHART)
-                                  .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                  .title("BarChart Tile")
-                                  .text("Whatever text")
-                                  .barChartItems(barChartItem1, barChartItem2, barChartItem3, barChartItem4)
-                                  .decimals(0)
-                                  .build();
-
-
+                .skinType(SkinType.BAR_CHART)
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .title("BarChart Tile")
+                .text("Whatever text")
+                .barChartItems(barChartItem1, barChartItem2, barChartItem3, barChartItem4)
+                .decimals(0)
+                .build();
 
 //       
-
-
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
-            @Override public void handle(long now) {
+            @Override
+            public void handle(long now) {
                 if (now > lastTimerCall + 3_500_000_000L) {
-                   barChartTile.getBarChartItems().get(RND.nextInt(4)).setValue(RND.nextDouble() * 80);
+                    barChartTile.getBarChartItems().get(RND.nextInt(4)).setValue(RND.nextDouble() * 80);
                     lastTimerCall = now;
                 }
             }
@@ -121,11 +99,13 @@ public class BarchartDemo extends Application {
         System.out.println("Initialization: " + (System.currentTimeMillis() - start) + "ms");
     }
 
-    @Override public void start(Stage stage) {
+    @Override
+    public void start(Stage stage) {
         long start = System.currentTimeMillis();
 
-         FlowGridPane pane = new FlowGridPane(8, 6,
-                                             barChartTile);
+     FlowGridPane pane = new FlowGridPane(8, 6, barChartTile);
+    
+    
 //        FlowGridPane pane = new FlowGridPane(8, 6,
 //                                             percentageTile, clockTile, gaugeTile, sparkLineTile, areaChartTile,
 //                                             lineChartTile, timerControlTile, numberTile, textTile,
@@ -166,20 +146,14 @@ public class BarchartDemo extends Application {
 
         timer.start();
 
-
     }
 
-    @Override public void stop() {
-
+    @Override
+    public void stop() {
         // useful for jpro
         timer.stop();
-
-
         System.exit(0);
     }
-
-
-
 
     // ******************** Misc **********************************************
     private void calcNoOfNodes(Node node) {
@@ -187,11 +161,12 @@ public class BarchartDemo extends Application {
             if (((Parent) node).getChildrenUnmodifiable().size() != 0) {
                 ObservableList<Node> tempChildren = ((Parent) node).getChildrenUnmodifiable();
                 noOfNodes += tempChildren.size();
-                for (Node n : tempChildren) { calcNoOfNodes(n); }
+                for (Node n : tempChildren) {
+                    calcNoOfNodes(n);
+                }
             }
         }
     }
-
 
     public static void main(String[] args) {
         launch(args);
