@@ -60,10 +60,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.time.LocalTime;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 import static javafx.application.Application.launch;
 import javafx.scene.paint.Stop;
@@ -132,7 +130,7 @@ public class LeaderBoardItem extends Application {
     private Tile            calendarTile;
     private Tile            sunburstTile;
     private Tile            matrixTile;
-    private Tile            radialPercentageTile;
+
     private Tile            statusTile;
     private Tile            barGaugeTile;
     private Tile            imageTile;
@@ -206,14 +204,14 @@ public class LeaderBoardItem extends Application {
         leaderBoardItem4 = new eu.hansolo.tilesfx.skins.LeaderBoardItem("Anton", 8);
 
         // Chart Data
-        chartData1 = new ChartData("Item 1", 24.0, Tile.GREEN);
-        chartData2 = new ChartData("Item 2", 10.0, Tile.BLUE);
-        chartData3 = new ChartData("Item 3", 12.0, Tile.RED);
-        chartData4 = new ChartData("Item 4", 13.0, Tile.YELLOW_ORANGE);
-        chartData5 = new ChartData("Item 5", 13.0, Tile.BLUE);
-        chartData6 = new ChartData("Item 6", 13.0, Tile.BLUE);
-        chartData7 = new ChartData("Item 7", 13.0, Tile.BLUE);
-        chartData8 = new ChartData("Item 8", 13.0, Tile.BLUE);
+//        chartData1 = new ChartData("Item 1", 24.0, Tile.GREEN);
+//        chartData2 = new ChartData("Item 2", 10.0, Tile.BLUE);
+//        chartData3 = new ChartData("Item 3", 12.0, Tile.RED);
+//        chartData4 = new ChartData("Item 4", 13.0, Tile.YELLOW_ORANGE);
+//        chartData5 = new ChartData("Item 5", 13.0, Tile.BLUE);
+//        chartData6 = new ChartData("Item 6", 13.0, Tile.BLUE);
+//        chartData7 = new ChartData("Item 7", 13.0, Tile.BLUE);
+//        chartData8 = new ChartData("Item 8", 13.0, Tile.BLUE);
 
 
         // Creating Tiles
@@ -245,16 +243,7 @@ public class LeaderBoardItem extends Application {
                                       .running(true)
                                       .build();
 
-        numberTile = TileBuilder.create()
-                                .skinType(SkinType.NUMBER)
-                                .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                .title("Number Tile")
-                                .text("Whatever text")
-                                .value(13)
-                                .unit("mb")
-                                .description("Test")
-                                .textVisible(true)
-                                .build();
+
 
         textTile = TileBuilder.create()
                               .skinType(SkinType.TEXT)
@@ -276,27 +265,6 @@ public class LeaderBoardItem extends Application {
                                    .description("Test")
                                    .unit("\u00B0C")
                                    .build();
-
-        sliderTile = TileBuilder.create()
-                                .skinType(SkinType.SLIDER)
-                                .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                .title("Slider Tile")
-                                .text("Whatever text")
-                                .description("Test")
-                                .unit("\u00B0C")
-                                .barBackgroundColor(Tile.FOREGROUND)
-                                .build();
-
-        switchTile = TileBuilder.create()
-                                .skinType(SkinType.SWITCH)
-                                .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                .title("Switch Tile")
-                                .text("Whatever text")
-                                //.description("Test")
-                                .build();
-
-        switchTile.setOnSwitchPressed(e -> System.out.println("Switch pressed"));
-        switchTile.setOnSwitchReleased(e -> System.out.println("Switch released"));
 
 
 
@@ -325,23 +293,8 @@ public class LeaderBoardItem extends Application {
                              .mapProvider(Tile.MapProvider.TOPO)
                              .build();
 
-        radialChartTile = TileBuilder.create()
-                                     .skinType(SkinType.RADIAL_CHART)
-                                     .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                     .title("RadialChart Tile")
-                                     .text("Some text")
-                                     .textVisible(false)
-                                     .chartData(chartData1, chartData2, chartData3, chartData4)
-                                     .build();
 
-        donutChartTile = TileBuilder.create()
-                                     .skinType(SkinType.DONUT_CHART)
-                                     .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                     .title("DonutChart Tile")
-                                     .text("Some text")
-                                     .textVisible(false)
-                                     .chartData(chartData1, chartData2, chartData3, chartData4)
-                                     .build();
+
 
         circularProgressTile = TileBuilder.create()
                                           .skinType(SkinType.CIRCULAR_PROGRESS)
@@ -393,27 +346,6 @@ public class LeaderBoardItem extends Application {
 
 
 
-
-
-        ZonedDateTime   now          = ZonedDateTime.now();
-        List<ChartData> calendarData = new ArrayList<>(10);
-        calendarData.add(new ChartData("Item 1", now.minusDays(1).toInstant()));
-        calendarData.add(new ChartData("Item 2", now.plusDays(2).toInstant()));
-        calendarData.add(new ChartData("Item 3", now.plusDays(10).toInstant()));
-        calendarData.add(new ChartData("Item 4", now.plusDays(15).toInstant()));
-        calendarData.add(new ChartData("Item 5", now.plusDays(15).toInstant()));
-        calendarData.add(new ChartData("Item 6", now.plusDays(20).toInstant()));
-        calendarData.add(new ChartData("Item 7", now.plusDays(7).toInstant()));
-        calendarData.add(new ChartData("Item 8", now.minusDays(1).toInstant()));
-        calendarData.add(new ChartData("Item 9", now.toInstant()));
-        calendarData.add(new ChartData("Item 10", now.toInstant()));
-
-        calendarTile = TileBuilder.create()
-                                  .skinType(SkinType.CALENDAR)
-                                  .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                  .chartData(calendarData)
-                                  .build();
-
         TreeNode tree   = new TreeNode(new ChartData("ROOT"));
         TreeNode first  = new TreeNode(new ChartData("1st", 8.3, Tile.BLUE), tree);
         TreeNode second = new TreeNode(new ChartData("2nd", 2.2, Tile.ORANGE), tree);
@@ -437,23 +369,7 @@ public class LeaderBoardItem extends Application {
 
 
 
-        radialPercentageTile = TileBuilder.create().skinType(SkinType.RADIAL_PERCENTAGE)
-                                          .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                          //.backgroundColor(Color.web("#26262D"))
-                                          .maxValue(1000)
-                                          .title("RadialPercentage Tile")
-                                          .description("Product 1")
-                                          .textVisible(false)
-                                          .chartData(chartData1, chartData2, chartData3)
-                                          .animated(true)
-                                          .referenceValue(100)
-                                          .value(chartData1.getValue())
-                                          .descriptionColor(Tile.GRAY)
-                                          //.valueColor(Tile.BLUE)
-                                          //.unitColor(Tile.BLUE)
-                                          .barColor(Tile.BLUE)
-                                          .decimals(0)
-                                          .build();
+
 
         Indicator leftGraphics = new Indicator(Tile.RED);
         leftGraphics.setOn(true);
@@ -707,8 +623,7 @@ public class LeaderBoardItem extends Application {
         mapTile.addPoiLocation(new Location(51.85, 7.75, "Test"));
         mapTile.removePoiLocation(new Location(51.85, 7.75, "Test"));
 
-        radialPercentageTile.setNotifyRegionTooltipText("tooltip");
-        radialPercentageTile.showNotifyRegion(true);
+
     }
 
     @Override public void stop() {
