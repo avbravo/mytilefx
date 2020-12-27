@@ -20,22 +20,14 @@ package com.avbravp.mytitlefx;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.Tile.SkinType;
 import eu.hansolo.tilesfx.TileBuilder;
-import eu.hansolo.tilesfx.TimeSection;
-import eu.hansolo.tilesfx.TimeSectionBuilder;
 import eu.hansolo.tilesfx.addons.HappinessIndicator;
 import eu.hansolo.tilesfx.addons.HappinessIndicator.Happiness;
 import eu.hansolo.tilesfx.addons.Indicator;
 import eu.hansolo.tilesfx.chart.ChartData;
-import eu.hansolo.tilesfx.icons.Flag;
 
 import eu.hansolo.tilesfx.tools.Country;
 import eu.hansolo.tilesfx.tools.FlowGridPane;
-import eu.hansolo.tilesfx.tools.Helper;
-import eu.hansolo.tilesfx.tools.Location;
-import eu.hansolo.tilesfx.tools.MatrixIcon;
 import eu.hansolo.tilesfx.tools.Rank;
-import eu.hansolo.tilesfx.tools.Ranking;
-import eu.hansolo.tilesfx.tools.TreeNode;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
@@ -48,23 +40,19 @@ import javafx.scene.Parent;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import static javafx.application.Application.launch;
-import javafx.scene.paint.Stop;
 
 /**
  * User: hansolo Date: 19.12.16 Time: 12:54
@@ -183,17 +171,7 @@ public class LeaderBoardItem extends Application {
             Country.values()[i].setColor(color);
         }
 
-        // TimeControl Data
-        TimeSection timeSection = TimeSectionBuilder.create()
-                                        .start(LocalTime.now().plusSeconds(20))
-                                        .stop(LocalTime.now().plusHours(1))
-                                        //.days(DayOfWeek.MONDAY, DayOfWeek.FRIDAY)
-                                        .color(Tile.GRAY)
-                                        .highlightColor(Tile.RED)
-                                        .build();
 
-        timeSection.setOnTimeSectionEntered(e -> System.out.println("Section ACTIVE"));
-        timeSection.setOnTimeSectionLeft(e -> System.out.println("Section INACTIVE"));
 
        
 
@@ -210,21 +188,6 @@ public class LeaderBoardItem extends Application {
 
 
 
-
-
-
-
-//
-//        textTile = TileBuilder.create()
-//                              .skinType(SkinType.TEXT)
-//                              .prefSize(TILE_WIDTH, TILE_HEIGHT)
-//                              .title("Text Tile")
-//                              .text("Whatever text")
-//                              .description("May the force be with you\n...always")
-//                              .descriptionAlignment(Pos.TOP_LEFT)
-//                              .textVisible(true)
-//                              .build();
-//
 
 
      
@@ -254,41 +217,6 @@ public class LeaderBoardItem extends Application {
 
 
 
-
-        Label     name      = new Label("Name");
-        name.setTextFill(Tile.FOREGROUND);
-        name.setAlignment(Pos.CENTER_LEFT);
-        HBox.setHgrow(name, Priority.NEVER);
-
-        Region spacer = new Region();
-        spacer.setPrefSize(5, 5);
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-
-        Label views = new Label("Cases / Deaths");
-        views.setTextFill(Tile.FOREGROUND);
-        views.setAlignment(Pos.CENTER_RIGHT);
-        HBox.setHgrow(views, Priority.NEVER);
-
-        HBox header = new HBox(5, name, spacer, views);
-        header.setAlignment(Pos.CENTER_LEFT);
-        header.setFillHeight(true);
-
-
-
-
-
-
-
-        HappinessIndicator happy   = new HappinessIndicator(Happiness.HAPPY, 0.67);
-        HappinessIndicator neutral = new HappinessIndicator(Happiness.NEUTRAL, 0.25);
-        HappinessIndicator unhappy = new HappinessIndicator(Happiness.UNHAPPY, 0.08);
-
-        HBox happiness = new HBox(unhappy, neutral, happy);
-        happiness.setFillHeight(true);
-
-        HBox.setHgrow(happy, Priority.ALWAYS);
-        HBox.setHgrow(neutral, Priority.ALWAYS);
-        HBox.setHgrow(unhappy, Priority.ALWAYS);
 
 
 
@@ -348,9 +276,7 @@ public class LeaderBoardItem extends Application {
         System.out.println("Nodes in Scene: " + noOfNodes);
 
         timer.start();
-//
-//        mapTile.addPoiLocation(new Location(51.85, 7.75, "Test"));
-//        mapTile.removePoiLocation(new Location(51.85, 7.75, "Test"));
+
 
 
     }
