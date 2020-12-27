@@ -1,4 +1,4 @@
-package com.avbravp.mytitlefx;
+package com.avbravo.mytitlefx;
 
 import javafx.application.Application;
 import eu.hansolo.tilesfx.Demo;

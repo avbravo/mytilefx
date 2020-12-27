@@ -1,7 +1,7 @@
-module com.avbravp.mytitlefx {
+module com.avbravo.mytitlefx {
     requires javafx.controls;
-    exports com.avbravp.mytitlefx;
-    exports com.avbravp.mytitlefx.barchart;
+    exports com.avbravo.mytitlefx;
+
     requires eu.hansolo.tilesfx;
-  //  opens eu.hansolo.tilesfx  to eu.hansolo.tilesfx;
+  opens eu.hansolo.tilesfx  to eu.hansolo.tilesfx;
 }

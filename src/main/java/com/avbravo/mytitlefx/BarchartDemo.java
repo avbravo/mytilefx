@@ -15,11 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.avbravp.mytitlefx;
+package com.avbravo.mytitlefx;
 
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.Tile.SkinType;
 import eu.hansolo.tilesfx.TileBuilder;
+import eu.hansolo.tilesfx.skins.BarChartItem;
 import eu.hansolo.tilesfx.tools.FlowGridPane;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -39,23 +40,23 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.Random;
-import static javafx.application.Application.launch;
 
 /**
  * User: hansolo Date: 19.12.16 Time: 12:54
  */
-public class LeaderBoardItem extends Application {
+public class BarchartDemo extends Application {
 
     private static final Random RND = new Random();
     private static final double TILE_WIDTH = 150;
     private static final double TILE_HEIGHT = 150;
     private int noOfNodes = 0;
 
-    private eu.hansolo.tilesfx.skins.LeaderBoardItem leaderBoardItem1;
-    private eu.hansolo.tilesfx.skins.LeaderBoardItem leaderBoardItem2;
-    private eu.hansolo.tilesfx.skins.LeaderBoardItem leaderBoardItem3;
-    private eu.hansolo.tilesfx.skins.LeaderBoardItem leaderBoardItem4;
-    private Tile leaderBoardTile;
+    private BarChartItem barChartItem1;
+    private BarChartItem barChartItem2;
+    private BarChartItem barChartItem3;
+    private BarChartItem barChartItem4;
+
+    private Tile barChartTile;
 
     private long lastTimerCall;
     private AnimationTimer timer;
@@ -64,36 +65,32 @@ public class LeaderBoardItem extends Application {
     @Override
     public void init() {
         long start = System.currentTimeMillis();
-
         value = new SimpleDoubleProperty(0);
 
-        // WorldMap Data
+        // BarChart Items
+        barChartItem1 = new BarChartItem("Gerrit", 47, Tile.BLUE);
+        barChartItem2 = new BarChartItem("Sandra", 43, Tile.RED);
+        barChartItem3 = new BarChartItem("Lilli", 12, Tile.GREEN);
+        barChartItem4 = new BarChartItem("Anton", 10, Tile.ORANGE);
 
-        // LeaderBoard Items
-        leaderBoardItem1 = new eu.hansolo.tilesfx.skins.LeaderBoardItem("Gerrit", 47);
-        leaderBoardItem2 = new eu.hansolo.tilesfx.skins.LeaderBoardItem("Sandra", 43);
-        leaderBoardItem3 = new eu.hansolo.tilesfx.skins.LeaderBoardItem("Lilli", 12);
-        leaderBoardItem4 = new eu.hansolo.tilesfx.skins.LeaderBoardItem("Anton", 8);
+        barChartItem1.setFormatString("%.1f kWh");
 
-        // Creating Tiles
-        leaderBoardTile = TileBuilder.create()
-                .skinType(SkinType.LEADER_BOARD)
+        barChartTile = TileBuilder.create()
+                .skinType(SkinType.BAR_CHART)
                 .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                .title("LeaderBoard Tile")
+                .title("BarChart Tile")
                 .text("Whatever text")
-                .leaderBoardItems(leaderBoardItem1, leaderBoardItem2, leaderBoardItem3, leaderBoardItem4)
+                .barChartItems(barChartItem1, barChartItem2, barChartItem3, barChartItem4)
+                .decimals(0)
                 .build();
 
-
-
+//       
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 if (now > lastTimerCall + 3_500_000_000L) {
-
-                    leaderBoardTile.getLeaderBoardItems().get(RND.nextInt(3)).setValue(RND.nextDouble() * 80);
-
+                    barChartTile.getBarChartItems().get(RND.nextInt(4)).setValue(RND.nextDouble() * 80);
                     lastTimerCall = now;
                 }
             }
@@ -106,8 +103,22 @@ public class LeaderBoardItem extends Application {
     public void start(Stage stage) {
         long start = System.currentTimeMillis();
 
-        FlowGridPane pane = new FlowGridPane(8, 6,
-                leaderBoardTile);
+     FlowGridPane pane = new FlowGridPane(8, 6, barChartTile);
+    
+    
+//        FlowGridPane pane = new FlowGridPane(8, 6,
+//                                             percentageTile, clockTile, gaugeTile, sparkLineTile, areaChartTile,
+//                                             lineChartTile, timerControlTile, numberTile, textTile,
+//                                             highLowTile, plusMinusTile, sliderTile, switchTile, timeTile,
+//                                             barChartTile, customTile, leaderBoardTile, worldTile, mapTile,
+//                                             radialChartTile, donutChartTile, circularProgressTile, stockTile,
+//                                             gaugeSparkLineTile, radarChartTile1, radarChartTile2,
+//                                             smoothAreaChartTile, countryTile, characterTile,
+//                                             flipTile, switchSliderTile, dateTile, calendarTile, sunburstTile,
+//                                             matrixTile, radialPercentageTile, statusTile, barGaugeTile, imageTile,
+//                                             timelineTile, imageCounterTile, ledTile, countdownTile, matrixIconTile,
+//                                             cycleStepTile, customFlagChartTile, colorTile, turnoverTile, fluidTile, fireSmokeTile,
+//                                             gauge2Tile, happinessTile, radialDistributionTile);
 
         pane.setHgap(5);
         pane.setVgap(5);
@@ -139,10 +150,8 @@ public class LeaderBoardItem extends Application {
 
     @Override
     public void stop() {
-
         // useful for jpro
         timer.stop();
-
         System.exit(0);
     }
 
