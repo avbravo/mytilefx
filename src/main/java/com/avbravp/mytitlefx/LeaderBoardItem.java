@@ -64,116 +64,23 @@ public class LeaderBoardItem extends Application {
     private static final double TILE_HEIGHT = 150;
     private int noOfNodes = 0;
 
-
     private eu.hansolo.tilesfx.skins.LeaderBoardItem leaderBoardItem1;
     private eu.hansolo.tilesfx.skins.LeaderBoardItem leaderBoardItem2;
     private eu.hansolo.tilesfx.skins.LeaderBoardItem leaderBoardItem3;
     private eu.hansolo.tilesfx.skins.LeaderBoardItem leaderBoardItem4;
+    private Tile leaderBoardTile;
 
-    private ChartData       chartData1;
-    private ChartData       chartData2;
-    private ChartData       chartData3;
-    private ChartData       chartData4;
-    private ChartData       chartData5;
-    private ChartData       chartData6;
-    private ChartData       chartData7;
-    private ChartData       chartData8;
+    private long lastTimerCall;
+    private AnimationTimer timer;
+    private DoubleProperty value;
 
-
-
-    private Rank            firstRank;
-
-    private Tile            percentageTile;
-    private Tile            clockTile;
-    private Tile            gaugeTile;
-    private Tile            sparkLineTile;
-
-
-    private Tile            highLowTile;
-    private Tile            timerControlTile;
-    private Tile            numberTile;
-//    private Tile            textTile;
-    private Tile            plusMinusTile;
-    private Tile            sliderTile;
-    private Tile            switchTile;
-    private Tile            worldTile;
-    private Tile            timeTile;
-    private Tile            barChartTile;
-    private Tile            customTile;
-    private Tile            leaderBoardTile;
-    private Tile            mapTile;
-    private Tile            radialChartTile;
-    private Tile            donutChartTile;
-    private Tile            circularProgressTile;
-    private Tile            stockTile;
-    private Tile            gaugeSparkLineTile;
-    private Tile            radarChartTile1;
-    private Tile            radarChartTile2;
-
-    private Tile            countryTile;
-    private Tile            characterTile;
-    private Tile            flipTile;
-    private Tile            switchSliderTile;
-    private Tile            dateTile;
-    private Tile            calendarTile;
-    private Tile            sunburstTile;
-    private Tile            matrixTile;
-
-    private Tile            statusTile;
-    private Tile            barGaugeTile;
-    private Tile            imageTile;
-    private Tile            timelineTile;
-    private Tile            imageCounterTile;
-    private Tile            ledTile;
-    private Tile            countdownTile;
-    private Tile            matrixIconTile;
-    private Tile            cycleStepTile;
-    private Tile            customFlagChartTile;
-    private Tile            colorTile;
-    private Tile            turnoverTile;
-    private Tile            fluidTile;
-
-//    private Tile            gauge2Tile;
-
-
-
-
-    private long            lastTimerCall;
-    private AnimationTimer  timer;
-    private DoubleProperty  value;
-
-
-    @Override public void init() {
+    @Override
+    public void init() {
         long start = System.currentTimeMillis();
-
 
         value = new SimpleDoubleProperty(0);
 
-
-
-
-
         // WorldMap Data
-        for (int i = 0; i < Country.values().length ; i++) {
-            double value = RND.nextInt(10);
-            Color  color;
-            if (value > 8) {
-                color = Tile.RED;
-            } else if (value > 6) {
-                color = Tile.ORANGE;
-            } else if (value > 4) {
-                color = Tile.YELLOW_ORANGE;
-            } else if (value > 2) {
-                color = Tile.GREEN;
-            } else {
-                color = Tile.BLUE;
-            }
-            Country.values()[i].setColor(color);
-        }
-
-
-
-       
 
         // LeaderBoard Items
         leaderBoardItem1 = new eu.hansolo.tilesfx.skins.LeaderBoardItem("Gerrit", 47);
@@ -181,62 +88,25 @@ public class LeaderBoardItem extends Application {
         leaderBoardItem3 = new eu.hansolo.tilesfx.skins.LeaderBoardItem("Lilli", 12);
         leaderBoardItem4 = new eu.hansolo.tilesfx.skins.LeaderBoardItem("Anton", 8);
 
-
-
-
         // Creating Tiles
-
-
-
-
-
-     
-
-
-
         leaderBoardTile = TileBuilder.create()
-                                     .skinType(SkinType.LEADER_BOARD)
-                                     .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                     .title("LeaderBoard Tile")
-                                     .text("Whatever text")
-                                     .leaderBoardItems(leaderBoardItem1, leaderBoardItem2, leaderBoardItem3, leaderBoardItem4)
-                                     .build();
-
-
-
-
-        Indicator leftGraphics = new Indicator(Tile.RED);
-        leftGraphics.setOn(true);
-
-        Indicator middleGraphics = new Indicator(Tile.YELLOW);
-        middleGraphics.setOn(true);
-
-        Indicator rightGraphics = new Indicator(Tile.GREEN);
-        rightGraphics.setOn(true);
-
-
-
-
-
-
-
-        List<ChartData> glucoseData = new ArrayList<>();
-        for (int i = 0 ; i < 288; i++) {
-            glucoseData.add(new ChartData("", RND.nextDouble() * 300 + 50));
-        }
+                .skinType(SkinType.LEADER_BOARD)
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .title("LeaderBoard Tile")
+                .text("Whatever text")
+                .leaderBoardItems(leaderBoardItem1, leaderBoardItem2, leaderBoardItem3, leaderBoardItem4)
+                .build();
 
 
 
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
-            @Override public void handle(long now) {
+            @Override
+            public void handle(long now) {
                 if (now > lastTimerCall + 3_500_000_000L) {
-                   
-
 
                     leaderBoardTile.getLeaderBoardItems().get(RND.nextInt(3)).setValue(RND.nextDouble() * 80);
 
-                             
                     lastTimerCall = now;
                 }
             }
@@ -245,11 +115,12 @@ public class LeaderBoardItem extends Application {
         System.out.println("Initialization: " + (System.currentTimeMillis() - start) + "ms");
     }
 
-    @Override public void start(Stage stage) {
+    @Override
+    public void start(Stage stage) {
         long start = System.currentTimeMillis();
 
         FlowGridPane pane = new FlowGridPane(8, 6,
-                                           leaderBoardTile);
+                leaderBoardTile);
 
         pane.setHgap(5);
         pane.setVgap(5);
@@ -277,22 +148,16 @@ public class LeaderBoardItem extends Application {
 
         timer.start();
 
-
-
     }
 
-    @Override public void stop() {
+    @Override
+    public void stop() {
 
         // useful for jpro
         timer.stop();
-        clockTile.setRunning(false);
-
 
         System.exit(0);
     }
-
-
-
 
     // ******************** Misc **********************************************
     private void calcNoOfNodes(Node node) {
@@ -300,11 +165,12 @@ public class LeaderBoardItem extends Application {
             if (((Parent) node).getChildrenUnmodifiable().size() != 0) {
                 ObservableList<Node> tempChildren = ((Parent) node).getChildrenUnmodifiable();
                 noOfNodes += tempChildren.size();
-                for (Node n : tempChildren) { calcNoOfNodes(n); }
+                for (Node n : tempChildren) {
+                    calcNoOfNodes(n);
+                }
             }
         }
     }
-
 
     public static void main(String[] args) {
         launch(args);
