@@ -454,96 +454,15 @@ public class LeaderBoardItem extends Application {
                                                        new Stop(1.0, Tile.LIGHT_RED))
                                         .build();
         
-        radarChartTile1 = TileBuilder.create().skinType(SkinType.RADAR_CHART)
-                                     .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                     .minValue(0)
-                                     .maxValue(50)
-                                     .title("RadarChartTileSkin Sector")
-                                     .unit("Unit")
-                                     .radarChartMode(RadarChartMode.SECTOR)
-                                     .gradientStops(new Stop(0.00000, Color.TRANSPARENT),
-                                                    new Stop(0.00001, Color.web("#3552a0")),
-                                                    new Stop(0.09090, Color.web("#456acf")),
-                                                    new Stop(0.27272, Color.web("#45a1cf")),
-                                                    new Stop(0.36363, Color.web("#30c8c9")),
-                                                    new Stop(0.45454, Color.web("#30c9af")),
-                                                    new Stop(0.50909, Color.web("#56d483")),
-                                                    new Stop(0.72727, Color.web("#9adb49")),
-                                                    new Stop(0.81818, Color.web("#efd750")),
-                                                    new Stop(0.90909, Color.web("#ef9850")),
-                                                    new Stop(1.00000, Color.web("#ef6050")))
-                                     .text("Test")
-                                     .chartData(chartData1, chartData2, chartData3, chartData4,
-                                                chartData5, chartData6, chartData7, chartData8)
-                                     .tooltipText("")
-                                     .animated(true)
-                                     .build();
 
-        radarChartTile2 = TileBuilder.create().skinType(SkinType.RADAR_CHART)
-                                     .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                     .minValue(0)
-                                     .maxValue(50)
-                                     .title("RadarChartTileSkin Polygon")
-                                     .unit("Unit")
-                                     .radarChartMode(RadarChartMode.POLYGON)
-                                     .gradientStops(new Stop(0.00000, Color.TRANSPARENT),
-                                                    new Stop(0.00001, Color.web("#3552a0")),
-                                                    new Stop(0.09090, Color.web("#456acf")),
-                                                    new Stop(0.27272, Color.web("#45a1cf")),
-                                                    new Stop(0.36363, Color.web("#30c8c9")),
-                                                    new Stop(0.45454, Color.web("#30c9af")),
-                                                    new Stop(0.50909, Color.web("#56d483")),
-                                                    new Stop(0.72727, Color.web("#9adb49")),
-                                                    new Stop(0.81818, Color.web("#efd750")),
-                                                    new Stop(0.90909, Color.web("#ef9850")),
-                                                    new Stop(1.00000, Color.web("#ef6050")))
-                                     .text("Test")
-                                     .chartData(chartData1, chartData2, chartData3, chartData4,
-                                                chartData5, chartData6, chartData7, chartData8)
-                                     .tooltipText("")
-                                     .animated(true)
-                                     .build();
 
 
 
         firstRank = new Rank(Ranking.FIRST, Tile.YELLOW_ORANGE);
 
-        countryTile = TileBuilder.create().skinType(SkinType.COUNTRY)
-                                          .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                          .minValue(0)
-                                          .maxValue(40)
-                                          .title("Country Tile")
-                                          .unit("Unit")
-                                          .country(Country.DE)
-                                          .tooltipText("")
-                                          .animated(true)
-                                          .build();
 
-        characterTile = TileBuilder.create().skinType(SkinType.CHARACTER)
-                                            .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                            .title("Character Tile")
-                                            .titleAlignment(TextAlignment.CENTER)
-                                            .description("G")
-                                            .build();
 
-        flipTile      = TileBuilder.create().skinType(SkinType.FLIP)
-                                            .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                            .characters(Helper.TIME_0_TO_5)
-                                            .flipTimeInMS(500)
-                                            .flipText(" ")
-                                            .build();
 
-        switchSliderTile = TileBuilder.create()
-                          .skinType(SkinType.SWITCH_SLIDER)
-                          .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                          .title("SwitchSlider Tile")
-                          .text("Test")
-                          .build();
-
-        dateTile = TileBuilder.create()
-                              .skinType(SkinType.DATE)
-                              .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                              .build();
 
         ZonedDateTime   now          = ZonedDateTime.now();
         List<ChartData> calendarData = new ArrayList<>(10);
@@ -584,29 +503,8 @@ public class LeaderBoardItem extends Application {
         TreeNode dec = new TreeNode(new ChartData("Dec", 0.3), fourth);
 
 
-        sunburstTile = TileBuilder.create().skinType(SkinType.SUNBURST)
-                                  .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                  .title("Sunburst Tile")
-                                  .textVisible(false)
-                                  .sunburstTree(tree)
-                                  .sunburstBackgroundColor(Tile.BACKGROUND)
-                                  .sunburstTextColor(Tile.BACKGROUND)
-                                  .sunburstUseColorFromParent(true)
-                                  .sunburstTextOrientation(SunburstChart.TextOrientation.TANGENT)
-                                  .sunburstAutoTextColor(true)
-                                  .sunburstUseChartDataTextColor(true)
-                                  .sunburstInteractive(true)
-                                  .build();
 
-        matrixTile = TileBuilder.create().skinType(SkinType.MATRIX)
-                                .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                .title("Matrix Tile")
-                                .text("Any Text")
-                                .textVisible(false)
-                                .animated(true)
-                                .matrixSize(8, 50)
-                                .chartData(chartData1, chartData2, chartData3, chartData4, chartData5, chartData6, chartData7, chartData8)
-                                .build();
+
 
         radialPercentageTile = TileBuilder.create().skinType(SkinType.RADIAL_PERCENTAGE)
                                           .prefSize(TILE_WIDTH, TILE_HEIGHT)
@@ -635,108 +533,12 @@ public class LeaderBoardItem extends Application {
         Indicator rightGraphics = new Indicator(Tile.GREEN);
         rightGraphics.setOn(true);
 
-        statusTile = TileBuilder.create()
-                                .skinType(SkinType.STATUS)
-                                .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                .title("Status Tile")
-                                .description("Notifications")
-                                .leftText("CRITICAL")
-                                .middleText("WARNING")
-                                .rightText("INFORMATION")
-                                .leftGraphics(leftGraphics)
-                                .middleGraphics(middleGraphics)
-                                .rightGraphics(rightGraphics)
-                                .text("Text")
-                                .build();
 
-        barGaugeTile = TileBuilder.create()
-                                  .skinType(SkinType.BAR_GAUGE)
-                                  .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                  .minValue(0)
-                                  .maxValue(100)
-                                  .startFromZero(true)
-                                  .threshold(80)
-                                  .thresholdVisible(true)
-                                  .title("BarGauge Tile")
-                                  .unit("F")
-                                  .text("Whatever text")
-                                  .gradientStops(new Stop(0, Bright.BLUE),
-                                                 new Stop(0.1, Bright.BLUE_GREEN),
-                                                 new Stop(0.2, Bright.GREEN),
-                                                 new Stop(0.3, Bright.GREEN_YELLOW),
-                                                 new Stop(0.4, Bright.YELLOW),
-                                                 new Stop(0.5, Bright.YELLOW_ORANGE),
-                                                 new Stop(0.6, Bright.ORANGE),
-                                                 new Stop(0.7, Bright.ORANGE_RED),
-                                                 new Stop(0.8, Bright.RED),
-                                                 new Stop(1.0, Dark.RED))
-                                  .strokeWithGradient(true)
-                                  .animated(true)
-                                  .build();
 
       
 
-        timelineTile = TileBuilder.create()
-                                  .skinType(SkinType.TIMELINE)
-                                  .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                  .title("Timeline Tile")
-                                  .unit("mg/dl")
-                                  .minValue(0)
-                                  .maxValue(350)
-                                  .smoothing(true)
-                                  .lowerThreshold(70)
-                                  .lowerThresholdColor(Tile.TileColor.RED.color)
-                                  .threshold(240)
-                                  .thresholdColor(Tile.TileColor.RED.color)
-                                  .thresholdVisible(true)
-                                  .tickLabelColor(Helper.getColorWithOpacity(Tile.FOREGROUND, 0.5))
-                                  .sections(new Section(0, 70, "Low", Helper.getColorWithOpacity(Dark.RED, 0.1)),
-                                            new Section(70, 140, "Ok", Helper.getColorWithOpacity(Bright.GREEN, 0.15)),
-                                            new Section(140, 350, "High", Helper.getColorWithOpacity(Dark.RED, 0.1)))
-                                  .highlightSections(true)
-                                  .sectionsVisible(true)
-                                  .textAlignment(TextAlignment.CENTER)
-                                  .timePeriod(java.time.Duration.ofMinutes(1))
-                                  .maxTimePeriod(java.time.Duration.ofMinutes(1))
-                                  .timePeriodResolution(TimeUnit.SECONDS)
-                                  .numberOfValuesForTrendCalculation(5)
-                                  .trendVisible(true)
-                                  .maxTimePeriod(java.time.Duration.ofSeconds(60))
-                                  .gradientStops(new Stop(0, Dark.RED),
-                                                 new Stop(0.15, Dark.RED),
-                                                 new Stop(0.2, Bright.YELLOW_ORANGE),
-                                                 new Stop(0.25, Bright.GREEN),
-                                                 new Stop(0.3, Bright.GREEN),
-                                                 new Stop(0.35, Bright.GREEN),
-                                                 new Stop(0.45, Bright.YELLOW_ORANGE),
-                                                 new Stop(0.5, Bright.ORANGE),
-                                                 new Stop(0.685, Dark.RED),
-                                                 new Stop(1.0, Dark.RED))
-                                  .strokeWithGradient(true)
-                                  .averageVisible(true)
-                                  .averagingPeriod(60)
-                                  .timeoutMs(60000)
-                                  .build();
-
         
-        ledTile = TileBuilder.create()
-                             .skinType(SkinType.LED)
-                             .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                             .title("Led Tile")
-                             .description("Description")
-                             .text("Whatever text")
-                             .build();
 
-        countdownTile = TileBuilder.create()
-                                   .skinType(SkinType.COUNTDOWN_TIMER)
-                                   .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                   .title("CountdownTimer Tile")
-                                   .description("Description")
-                                   .text("Text")
-                                   .barColor(Bright.ORANGE_RED)
-                                   .timePeriod(Duration.ofSeconds(30))
-                                   .onAlarm(e -> System.out.println("Alarm"))
-                                   .build();
 
         MatrixIcon matrixIcon1 = new MatrixIcon();
         matrixIcon1.fillPixels(2, 5, 1, Color.BLACK);
@@ -864,24 +666,7 @@ public class LeaderBoardItem extends Application {
         matrixIcon9.setPixelAt(6, 5, Color.BLACK);
         matrixIcon9.fillPixels(2, 5, 6, Color.BLACK);
 
-        matrixIconTile = TileBuilder.create()
-                                    .skinType(SkinType.MATRIX_ICON)
-                                    .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                    .title("MatrixIcon Tile")
-                                    .matrixIcons(matrixIcon1, matrixIcon2, matrixIcon3, matrixIcon4, matrixIcon5, matrixIcon6, matrixIcon7, matrixIcon8, matrixIcon9)
-                                    .animationDuration(50)
-                                    .animated(true)
-                                    .build();
 
-        cycleStepTile = TileBuilder.create()
-                                   .skinType(SkinType.CYCLE_STEP)
-                                   .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                   .title("CycleStep Tile")
-                                   .textVisible(false)
-                                   .chartData(chartData1, chartData2, chartData3, chartData4, chartData5)
-                                   .animated(true)
-                                   .decimals(1)
-                                   .build();
 
         Label     name      = new Label("Name");
         name.setTextFill(Tile.FOREGROUND);
