@@ -296,13 +296,8 @@ public class LeaderBoardItem extends Application {
 
 
 
-        circularProgressTile = TileBuilder.create()
-                                          .skinType(SkinType.CIRCULAR_PROGRESS)
-                                          .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                          .title("CircularProgress Tile")
-                                          .text("Some text")
-                                          .unit(Helper.PERCENTAGE)
-                                          .build();
+
+
 
         stockTile = TileBuilder.create()
                                .skinType(SkinType.STOCK)
