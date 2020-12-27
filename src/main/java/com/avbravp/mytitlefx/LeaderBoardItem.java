@@ -203,15 +203,7 @@ public class LeaderBoardItem extends Application {
         leaderBoardItem3 = new eu.hansolo.tilesfx.skins.LeaderBoardItem("Lilli", 12);
         leaderBoardItem4 = new eu.hansolo.tilesfx.skins.LeaderBoardItem("Anton", 8);
 
-        // Chart Data
-//        chartData1 = new ChartData("Item 1", 24.0, Tile.GREEN);
-//        chartData2 = new ChartData("Item 2", 10.0, Tile.BLUE);
-//        chartData3 = new ChartData("Item 3", 12.0, Tile.RED);
-//        chartData4 = new ChartData("Item 4", 13.0, Tile.YELLOW_ORANGE);
-//        chartData5 = new ChartData("Item 5", 13.0, Tile.BLUE);
-//        chartData6 = new ChartData("Item 6", 13.0, Tile.BLUE);
-//        chartData7 = new ChartData("Item 7", 13.0, Tile.BLUE);
-//        chartData8 = new ChartData("Item 8", 13.0, Tile.BLUE);
+
 
 
         // Creating Tiles
@@ -219,32 +211,10 @@ public class LeaderBoardItem extends Application {
 
 
 
-        gaugeTile = TileBuilder.create()
-                               .skinType(SkinType.GAUGE)
-                               .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                               .title("Gauge Tile")
-                               .unit("V")
-                               .threshold(75)
-                               .build();
 
 
 
-
-
-
-        timerControlTile = TileBuilder.create()
-                                      .skinType(SkinType.TIMER_CONTROL)
-                                      .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                      .title("TimerControl Tile")
-                                      .text("Whatever text")
-                                      .secondsVisible(true)
-                                      .dateVisible(true)
-                                      .timeSections(timeSection)
-                                      .running(true)
-                                      .build();
-
-
-
+//
         textTile = TileBuilder.create()
                               .skinType(SkinType.TEXT)
                               .prefSize(TILE_WIDTH, TILE_HEIGHT)
@@ -254,17 +224,6 @@ public class LeaderBoardItem extends Application {
                               .descriptionAlignment(Pos.TOP_LEFT)
                               .textVisible(true)
                               .build();
-
-        plusMinusTile = TileBuilder.create()
-                                   .skinType(SkinType.PLUS_MINUS)
-                                   .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                   .maxValue(30)
-                                   .minValue(0)
-                                   .title("PlusMinus Tile")
-                                   .text("Whatever text")
-                                   .description("Test")
-                                   .unit("\u00B0C")
-                                   .build();
 
 
 
@@ -280,89 +239,6 @@ public class LeaderBoardItem extends Application {
                                      .leaderBoardItems(leaderBoardItem1, leaderBoardItem2, leaderBoardItem3, leaderBoardItem4)
                                      .build();
 
-        mapTile = TileBuilder.create()
-                             .skinType(SkinType.MAP)
-                             .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                             .title("Map Tile")
-                             .text("Some text")
-                             .description("Description")
-                             .currentLocation(new Location(51.91178, 7.63379, "Home", Tile.TileColor.MAGENTA.color))
-                             .pointsOfInterest(new Location(51.914405, 7.635732, "POI 1", Tile.TileColor.RED.color),
-                                               new Location(51.912529, 7.631752, "POI 2", Tile.TileColor.BLUE.color),
-                                               new Location(51.923993, 7.628906, "POI 3", Tile.TileColor.YELLOW_ORANGE.color))
-                             .mapProvider(Tile.MapProvider.TOPO)
-                             .build();
-
-
-
-
-
-
-
-        stockTile = TileBuilder.create()
-                               .skinType(SkinType.STOCK)
-                               .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                               .title("Stock Tile")
-                               .minValue(0)
-                               .maxValue(1000)
-                               .averagingPeriod(100)
-                               .build();
-
-        gaugeSparkLineTile = TileBuilder.create()
-                                        .skinType(SkinType.GAUGE_SPARK_LINE)
-                                        .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                        .title("GaugeSparkLine Tile")
-                                        .animated(true)
-                                        .textVisible(false)
-                                        .averagingPeriod(25)
-                                        .autoReferenceValue(true)
-                                        .barColor(Tile.YELLOW_ORANGE)
-                                        .barBackgroundColor(Color.rgb(255, 255, 255, 0.1))
-                                        .sections(new eu.hansolo.tilesfx.Section(0, 33, Tile.LIGHT_GREEN),
-                                                  new eu.hansolo.tilesfx.Section(33, 67, Tile.YELLOW),
-                                                  new eu.hansolo.tilesfx.Section(67, 100, Tile.LIGHT_RED))
-                                        .sectionsVisible(true)
-                                        .highlightSections(true)
-                                        .strokeWithGradient(true)
-                                        .fixedYScale(true)
-                                        .gradientStops(new Stop(0.0, Tile.LIGHT_GREEN),
-                                                       new Stop(0.33, Tile.LIGHT_GREEN),
-                                                       new Stop(0.33,Tile.YELLOW),
-                                                       new Stop(0.67, Tile.YELLOW),
-                                                       new Stop(0.67, Tile.LIGHT_RED),
-                                                       new Stop(1.0, Tile.LIGHT_RED))
-                                        .build();
-        
-
-
-
-
-        firstRank = new Rank(Ranking.FIRST, Tile.YELLOW_ORANGE);
-
-
-
-        TreeNode tree   = new TreeNode(new ChartData("ROOT"));
-        TreeNode first  = new TreeNode(new ChartData("1st", 8.3, Tile.BLUE), tree);
-        TreeNode second = new TreeNode(new ChartData("2nd", 2.2, Tile.ORANGE), tree);
-        TreeNode third  = new TreeNode(new ChartData("3rd", 1.4, Tile.PINK), tree);
-        TreeNode fourth = new TreeNode(new ChartData("4th", 1.2, Tile.LIGHT_GREEN), tree);
-
-        TreeNode jan = new TreeNode(new ChartData("Jan", 3.5), first);
-        TreeNode feb = new TreeNode(new ChartData("Feb", 3.1), first);
-        TreeNode mar = new TreeNode(new ChartData("Mar", 1.7), first);
-        TreeNode apr = new TreeNode(new ChartData("Apr", 1.1), second);
-        TreeNode may = new TreeNode(new ChartData("May", 0.8), second);
-        TreeNode jun = new TreeNode(new ChartData("Jun", 0.3), second);
-        TreeNode jul = new TreeNode(new ChartData("Jul", 0.7), third);
-        TreeNode aug = new TreeNode(new ChartData("Aug", 0.6), third);
-        TreeNode sep = new TreeNode(new ChartData("Sep", 0.1), third);
-        TreeNode oct = new TreeNode(new ChartData("Oct", 0.5), fourth);
-        TreeNode nov = new TreeNode(new ChartData("Nov", 0.4), fourth);
-        TreeNode dec = new TreeNode(new ChartData("Dec", 0.3), fourth);
-
-
-
-
 
 
 
@@ -376,137 +252,6 @@ public class LeaderBoardItem extends Application {
         rightGraphics.setOn(true);
 
 
-
-      
-
-        
-
-
-        MatrixIcon matrixIcon1 = new MatrixIcon();
-        matrixIcon1.fillPixels(2, 5, 1, Color.BLACK);
-        matrixIcon1.setPixelAt(1, 2, Color.BLACK);
-        matrixIcon1.fillPixels(2, 5, 2, Color.WHITE);
-        matrixIcon1.setPixelAt(6, 2, Color.BLACK);
-        matrixIcon1.setPixelAt(0, 3, Color.BLACK);
-        matrixIcon1.fillPixels(1, 2, 3, Color.WHITE);
-        matrixIcon1.fillPixels(3, 4, 3, Color.web("#4d79ff"));
-        matrixIcon1.fillPixels(5, 6, 3, Color.WHITE);
-        matrixIcon1.setPixelAt(7, 3, Color.BLACK);
-        matrixIcon1.setPixelAt(0, 4, Color.BLACK);
-        matrixIcon1.fillPixels(1, 2, 4, Color.WHITE);
-        matrixIcon1.fillPixels(3, 4, 4, Color.web("#4d79ff"));
-        matrixIcon1.fillPixels(5, 6, 4, Color.WHITE);
-        matrixIcon1.setPixelAt(7, 4, Color.BLACK);
-        matrixIcon1.setPixelAt(1, 5, Color.BLACK);
-        matrixIcon1.fillPixels(2, 5, 5, Color.WHITE);
-        matrixIcon1.setPixelAt(6, 5, Color.BLACK);
-        matrixIcon1.fillPixels(2, 5, 6, Color.BLACK);
-
-        MatrixIcon matrixIcon2 = new MatrixIcon();
-        matrixIcon2.fillPixels(1, 6, 2, Color.BLACK);
-        matrixIcon2.setPixelAt(0, 3, Color.BLACK);
-        matrixIcon2.fillPixels(1, 2, 3, Color.WHITE);
-        matrixIcon2.fillPixels(3, 4, 3, Color.web("#4d79ff"));
-        matrixIcon2.fillPixels(5, 6, 3, Color.WHITE);
-        matrixIcon2.setPixelAt(7, 3, Color.BLACK);
-        matrixIcon2.setPixelAt(0, 4, Color.BLACK);
-        matrixIcon2.fillPixels(1, 2, 4, Color.WHITE);
-        matrixIcon2.fillPixels(3, 4, 4, Color.web("#4d79ff"));
-        matrixIcon2.fillPixels(5, 6, 4, Color.WHITE);
-        matrixIcon2.setPixelAt(7, 4, Color.BLACK);
-        matrixIcon2.setPixelAt(1, 5, Color.BLACK);
-        matrixIcon2.fillPixels(2, 5, 5, Color.WHITE);
-        matrixIcon2.setPixelAt(6, 5, Color.BLACK);
-        matrixIcon2.fillPixels(2, 5, 6, Color.BLACK);
-
-        MatrixIcon matrixIcon3 = new MatrixIcon();
-        matrixIcon3.fillPixels(0, 7, 3, Color.BLACK);
-        matrixIcon3.setPixelAt(0, 4, Color.BLACK);
-        matrixIcon3.fillPixels(1, 2, 4, Color.WHITE);
-        matrixIcon3.fillPixels(3, 4, 4, Color.web("#4d79ff"));
-        matrixIcon3.fillPixels(5, 6, 4, Color.WHITE);
-        matrixIcon3.setPixelAt(7, 4, Color.BLACK);
-        matrixIcon3.setPixelAt(1, 5, Color.BLACK);
-        matrixIcon3.fillPixels(2, 5, 5, Color.WHITE);
-        matrixIcon3.setPixelAt(6, 5, Color.BLACK);
-        matrixIcon3.fillPixels(2, 5, 6, Color.BLACK);
-
-        MatrixIcon matrixIcon4 = new MatrixIcon();
-        matrixIcon4.setPixelAt(0, 3, Color.BLACK);
-        matrixIcon4.setPixelAt(7, 3, Color.BLACK);
-        matrixIcon4.fillPixels(0, 7, 4, Color.BLACK);
-        matrixIcon4.setPixelAt(1, 5, Color.BLACK);
-        matrixIcon4.fillPixels(2, 5, 5, Color.WHITE);
-        matrixIcon4.setPixelAt(6, 5, Color.BLACK);
-        matrixIcon4.fillPixels(2, 5, 6, Color.BLACK);
-
-        MatrixIcon matrixIcon5 = new MatrixIcon();
-        matrixIcon5.setPixelAt(0, 3, Color.BLACK);
-        matrixIcon5.setPixelAt(7, 3, Color.BLACK);
-        matrixIcon5.setPixelAt(0, 4, Color.BLACK);
-        matrixIcon5.setPixelAt(7, 4, Color.BLACK);
-        matrixIcon5.setPixelAt(1, 5, Color.BLACK);
-        matrixIcon5.fillPixels(2, 5, 5, Color.BLACK);
-        matrixIcon5.setPixelAt(6, 5, Color.BLACK);
-        matrixIcon5.fillPixels(2, 5, 6, Color.BLACK);
-
-        MatrixIcon matrixIcon6 = new MatrixIcon();
-        matrixIcon6.setPixelAt(0, 3, Color.BLACK);
-        matrixIcon6.setPixelAt(7, 3, Color.BLACK);
-        matrixIcon6.fillPixels(0, 7, 4, Color.BLACK);
-        matrixIcon6.setPixelAt(1, 5, Color.BLACK);
-        matrixIcon6.fillPixels(2, 5, 5, Color.WHITE);
-        matrixIcon6.setPixelAt(6, 5, Color.BLACK);
-        matrixIcon6.fillPixels(2, 5, 6, Color.BLACK);
-
-        MatrixIcon matrixIcon7 = new MatrixIcon();
-        matrixIcon7.fillPixels(0, 7, 3, Color.BLACK);
-        matrixIcon7.setPixelAt(0, 4, Color.BLACK);
-        matrixIcon7.fillPixels(1, 2, 4, Color.WHITE);
-        matrixIcon7.fillPixels(3, 4, 4, Color.web("#4d79ff"));
-        matrixIcon7.fillPixels(5, 6, 4, Color.WHITE);
-        matrixIcon7.setPixelAt(7, 4, Color.BLACK);
-        matrixIcon7.setPixelAt(1, 5, Color.BLACK);
-        matrixIcon7.fillPixels(2, 5, 5, Color.WHITE);
-        matrixIcon7.setPixelAt(6, 5, Color.BLACK);
-        matrixIcon7.fillPixels(2, 5, 6, Color.BLACK);
-
-        MatrixIcon matrixIcon8 = new MatrixIcon();
-        matrixIcon8.fillPixels(1, 6, 2, Color.BLACK);
-        matrixIcon8.setPixelAt(0, 3, Color.BLACK);
-        matrixIcon8.fillPixels(1, 2, 3, Color.WHITE);
-        matrixIcon8.fillPixels(3, 4, 3, Color.web("#4d79ff"));
-        matrixIcon8.fillPixels(5, 6, 3, Color.WHITE);
-        matrixIcon8.setPixelAt(7, 3, Color.BLACK);
-        matrixIcon8.setPixelAt(0, 4, Color.BLACK);
-        matrixIcon8.fillPixels(1, 2, 4, Color.WHITE);
-        matrixIcon8.fillPixels(3, 4, 4, Color.web("#4d79ff"));
-        matrixIcon8.fillPixels(5, 6, 4, Color.WHITE);
-        matrixIcon8.setPixelAt(7, 4, Color.BLACK);
-        matrixIcon8.setPixelAt(1, 5, Color.BLACK);
-        matrixIcon8.fillPixels(2, 5, 5, Color.WHITE);
-        matrixIcon8.setPixelAt(6, 5, Color.BLACK);
-        matrixIcon8.fillPixels(2, 5, 6, Color.BLACK);
-
-        MatrixIcon matrixIcon9 = new MatrixIcon();
-        matrixIcon9.fillPixels(2, 5, 1, Color.BLACK);
-        matrixIcon9.setPixelAt(1, 2, Color.BLACK);
-        matrixIcon9.fillPixels(2, 5, 2, Color.WHITE);
-        matrixIcon9.setPixelAt(6, 2, Color.BLACK);
-        matrixIcon9.setPixelAt(0, 3, Color.BLACK);
-        matrixIcon9.fillPixels(1, 2, 3, Color.WHITE);
-        matrixIcon9.fillPixels(3, 4, 3, Color.web("#4d79ff"));
-        matrixIcon9.fillPixels(5, 6, 3, Color.WHITE);
-        matrixIcon9.setPixelAt(7, 3, Color.BLACK);
-        matrixIcon9.setPixelAt(0, 4, Color.BLACK);
-        matrixIcon9.fillPixels(1, 2, 4, Color.WHITE);
-        matrixIcon9.fillPixels(3, 4, 4, Color.web("#4d79ff"));
-        matrixIcon9.fillPixels(5, 6, 4, Color.WHITE);
-        matrixIcon9.setPixelAt(7, 4, Color.BLACK);
-        matrixIcon9.setPixelAt(1, 5, Color.BLACK);
-        matrixIcon9.fillPixels(2, 5, 5, Color.WHITE);
-        matrixIcon9.setPixelAt(6, 5, Color.BLACK);
-        matrixIcon9.fillPixels(2, 5, 6, Color.BLACK);
 
 
 
@@ -527,17 +272,6 @@ public class LeaderBoardItem extends Application {
         HBox header = new HBox(5, name, spacer, views);
         header.setAlignment(Pos.CENTER_LEFT);
         header.setFillHeight(true);
-
-        HBox usa     = getCountryItem(Flag.UNITED_STATES_OF_AMERICA, "USA", "1.618.757 / 96.909");
-        HBox brazil  = getCountryItem(Flag.BRAZIL, "Brazil", "363.211 / 22.666");
-        HBox uk      = getCountryItem(Flag.UNITED_KINGDOM, "UK", "259.563 / 36.793");
-        HBox spain   = getCountryItem(Flag.SPAIN, "Spain", "235.772 / 28.752");
-        HBox italy   = getCountryItem(Flag.ITALY, "Italy", "229.585 / 32.785");
-        HBox germany = getCountryItem(Flag.GERMANY, "Germany", "178.570 / 8.257");
-        HBox france  = getCountryItem(Flag.FRANCE, "France", "142.204 / 28.315");
-
-        VBox dataTable = new VBox(0, header, usa, brazil, uk, spain, italy, germany, france);
-        dataTable.setFillWidth(true);
 
 
 
@@ -614,9 +348,9 @@ public class LeaderBoardItem extends Application {
         System.out.println("Nodes in Scene: " + noOfNodes);
 
         timer.start();
-
-        mapTile.addPoiLocation(new Location(51.85, 7.75, "Test"));
-        mapTile.removePoiLocation(new Location(51.85, 7.75, "Test"));
+//
+//        mapTile.addPoiLocation(new Location(51.85, 7.75, "Test"));
+//        mapTile.removePoiLocation(new Location(51.85, 7.75, "Test"));
 
 
     }
@@ -626,35 +360,12 @@ public class LeaderBoardItem extends Application {
         // useful for jpro
         timer.stop();
         clockTile.setRunning(false);
-        timerControlTile.setRunning(false);
+
 
         System.exit(0);
     }
 
-    private HBox getCountryItem(final Flag flag, final String text, final String data) {
-        ImageView imageView = new ImageView(flag.getImage(22));
-        HBox.setHgrow(imageView, Priority.NEVER);
 
-        Label name = new Label(text);
-        name.setTextFill(Tile.FOREGROUND);
-        name.setAlignment(Pos.CENTER_LEFT);
-        HBox.setHgrow(name, Priority.NEVER);
-
-        Region spacer = new Region();
-        spacer.setPrefSize(5, 5);
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-
-        Label views = new Label(data);
-        views.setTextFill(Tile.FOREGROUND);
-        views.setAlignment(Pos.CENTER_RIGHT);
-        HBox.setHgrow(views, Priority.NEVER);
-
-        HBox hBox = new HBox(5, imageView, name, spacer, views);
-        hBox.setAlignment(Pos.CENTER_LEFT);
-        hBox.setFillHeight(true);
-
-        return hBox;
-    }
 
 
     // ******************** Misc **********************************************
