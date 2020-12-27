@@ -17,7 +17,6 @@
  */
 package com.avbravp.mytitlefx;
 
-import eu.hansolo.tilesfx.Section;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.Tile.SkinType;
 import eu.hansolo.tilesfx.TileBuilder;
@@ -27,11 +26,6 @@ import eu.hansolo.tilesfx.addons.HappinessIndicator;
 import eu.hansolo.tilesfx.addons.HappinessIndicator.Happiness;
 import eu.hansolo.tilesfx.addons.Indicator;
 import eu.hansolo.tilesfx.chart.ChartData;
-import eu.hansolo.tilesfx.chart.RadarChartMode;
-import eu.hansolo.tilesfx.chart.SunburstChart;
-import eu.hansolo.tilesfx.colors.Bright;
-import eu.hansolo.tilesfx.colors.ColorSkin;
-import eu.hansolo.tilesfx.colors.Dark;
 import eu.hansolo.tilesfx.icons.Flag;
 
 import eu.hansolo.tilesfx.tools.Country;
@@ -42,7 +36,6 @@ import eu.hansolo.tilesfx.tools.MatrixIcon;
 import eu.hansolo.tilesfx.tools.Rank;
 import eu.hansolo.tilesfx.tools.Ranking;
 import eu.hansolo.tilesfx.tools.TreeNode;
-import java.time.Duration;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
@@ -72,12 +65,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 import static javafx.application.Application.launch;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.paint.Stop;
-import javafx.scene.text.TextAlignment;
 
 /**
  * User: hansolo Date: 19.12.16 Time: 12:54
@@ -228,24 +217,9 @@ public class LeaderBoardItem extends Application {
 
 
         // Creating Tiles
-        percentageTile = TileBuilder.create()
-                                    .skinType(SkinType.PERCENTAGE)
-                                    .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                    .title("Percentage Tile")
-                                    .unit(Helper.PERCENTAGE)
-                                    .description("Test")
-                                    .maxValue(60)
-                                    .build();
 
-        clockTile = TileBuilder.create()
-                               .skinType(SkinType.CLOCK)
-                               .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                               .title("Clock Tile")
-                               .text("Whatever text")
-                               .dateVisible(true)
-                               .locale(Locale.US)
-                               .running(true)
-                               .build();
+
+
 
         gaugeTile = TileBuilder.create()
                                .skinType(SkinType.GAUGE)
@@ -255,30 +229,10 @@ public class LeaderBoardItem extends Application {
                                .threshold(75)
                                .build();
 
-        sparkLineTile = TileBuilder.create()
-                                   .skinType(SkinType.SPARK_LINE)
-                                   .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                   .title("SparkLine Tile")
-                                   .unit("mb")
-                                   .gradientStops(new Stop(0, Tile.GREEN),
-                                                  new Stop(0.5, Tile.YELLOW),
-                                                  new Stop(1.0, Tile.RED))
-                                   .strokeWithGradient(true)
-                                   //.smoothing(true)
-                                   .build();
 
 
 
-        highLowTile = TileBuilder.create()
-                                 .skinType(SkinType.HIGH_LOW)
-                                 .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                 .title("HighLow Tile")
-                                 .unit("\u20AC")
-                                 .description("Test")
-                                 .text("Whatever text")
-                                 .referenceValue(6.7)
-                                 .value(8.2)
-                                 .build();
+
 
         timerControlTile = TileBuilder.create()
                                       .skinType(SkinType.TIMER_CONTROL)
@@ -344,34 +298,11 @@ public class LeaderBoardItem extends Application {
         switchTile.setOnSwitchPressed(e -> System.out.println("Switch pressed"));
         switchTile.setOnSwitchReleased(e -> System.out.println("Switch released"));
 
-        worldTile = TileBuilder.create()
-                               .prefSize(300, TILE_HEIGHT)
-                               .skinType(SkinType.WORLDMAP)
-                               .title("WorldMap Tile")
-                               .text("Whatever text")
-                               .textVisible(false)
-                               .build();
 
-        timeTile = TileBuilder.create()
-                              .skinType(SkinType.TIME)
-                              .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                              .title("Time Tile")
-                              .text("Whatever text")
-                              .duration(LocalTime.of(1, 22))
-                              .description("Average reply time")
-                              .textVisible(true)
-                              .build();
 
      
 
-        customTile = TileBuilder.create()
-                                .skinType(SkinType.CUSTOM)
-                                .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                .title("Custom Tile")
-                                .text("Whatever text")
-                                .graphic(new Button("Click Me"))
-                                .roundedCorners(false)
-                                .build();
+
 
         leaderBoardTile = TileBuilder.create()
                                      .skinType(SkinType.LEADER_BOARD)
