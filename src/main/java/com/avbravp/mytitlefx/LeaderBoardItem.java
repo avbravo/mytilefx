@@ -104,7 +104,7 @@ public class LeaderBoardItem extends Application {
     private Tile            highLowTile;
     private Tile            timerControlTile;
     private Tile            numberTile;
-    private Tile            textTile;
+//    private Tile            textTile;
     private Tile            plusMinusTile;
     private Tile            sliderTile;
     private Tile            switchTile;
@@ -215,16 +215,16 @@ public class LeaderBoardItem extends Application {
 
 
 //
-        textTile = TileBuilder.create()
-                              .skinType(SkinType.TEXT)
-                              .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                              .title("Text Tile")
-                              .text("Whatever text")
-                              .description("May the force be with you\n...always")
-                              .descriptionAlignment(Pos.TOP_LEFT)
-                              .textVisible(true)
-                              .build();
-
+//        textTile = TileBuilder.create()
+//                              .skinType(SkinType.TEXT)
+//                              .prefSize(TILE_WIDTH, TILE_HEIGHT)
+//                              .title("Text Tile")
+//                              .text("Whatever text")
+//                              .description("May the force be with you\n...always")
+//                              .descriptionAlignment(Pos.TOP_LEFT)
+//                              .textVisible(true)
+//                              .build();
+//
 
 
      
