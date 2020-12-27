@@ -20,14 +20,7 @@ package com.avbravp.mytitlefx;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.Tile.SkinType;
 import eu.hansolo.tilesfx.TileBuilder;
-import eu.hansolo.tilesfx.addons.HappinessIndicator;
-import eu.hansolo.tilesfx.addons.HappinessIndicator.Happiness;
-import eu.hansolo.tilesfx.addons.Indicator;
-import eu.hansolo.tilesfx.chart.ChartData;
-
-import eu.hansolo.tilesfx.tools.Country;
 import eu.hansolo.tilesfx.tools.FlowGridPane;
-import eu.hansolo.tilesfx.tools.Rank;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
@@ -39,18 +32,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import static javafx.application.Application.launch;
 
