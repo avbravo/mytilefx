@@ -36,6 +36,6 @@ public class PercentageTileLauncher {
      * @param args application arguments
      */
     public static void main(String[] args) {
-       PercentageTile.main(args);
+       PercentageTileDemo.main(args);
     }
 }

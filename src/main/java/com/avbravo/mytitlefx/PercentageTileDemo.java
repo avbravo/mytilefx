@@ -96,16 +96,13 @@ import java.util.concurrent.TimeUnit;
  * Date: 19.12.16
  * Time: 12:54
  */
-public class PercentageTile extends Application {
+public class PercentageTileDemo extends Application {
     private static final    Random RND = new Random();
     private static final    double TILE_WIDTH  = 150;
     private static final    double TILE_HEIGHT = 150;
     private                 int    noOfNodes = 0;
 
-    private BarChartItem    barChartItem1;
-    private BarChartItem    barChartItem2;
-    private BarChartItem    barChartItem3;
-    private BarChartItem    barChartItem4;
+
 
     private LeaderBoardItem leaderBoardItem1;
     private LeaderBoardItem leaderBoardItem2;
@@ -143,7 +140,7 @@ public class PercentageTile extends Application {
     private Tile            switchTile;
     private Tile            worldTile;
     private Tile            timeTile;
-    private Tile            barChartTile;
+//    private Tile            barChartTile;
     private Tile            customTile;
     private Tile            leaderBoardTile;
     private Tile            mapTile;
@@ -195,36 +192,36 @@ public class PercentageTile extends Application {
         value = new SimpleDoubleProperty(0);
 
         // AreaChart Data
-        XYChart.Series<String, Number> series1 = new XYChart.Series();
-        series1.setName("Whatever");
-        series1.getData().add(new XYChart.Data("MO", 23));
-        series1.getData().add(new XYChart.Data("TU", 21));
-        series1.getData().add(new XYChart.Data("WE", 20));
-        series1.getData().add(new XYChart.Data("TH", 22));
-        series1.getData().add(new XYChart.Data("FR", 24));
-        series1.getData().add(new XYChart.Data("SA", 22));
-        series1.getData().add(new XYChart.Data("SU", 20));
+//        XYChart.Series<String, Number> series1 = new XYChart.Series();
+//        series1.setName("Whatever");
+//        series1.getData().add(new XYChart.Data("MO", 23));
+//        series1.getData().add(new XYChart.Data("TU", 21));
+//        series1.getData().add(new XYChart.Data("WE", 20));
+//        series1.getData().add(new XYChart.Data("TH", 22));
+//        series1.getData().add(new XYChart.Data("FR", 24));
+//        series1.getData().add(new XYChart.Data("SA", 22));
+//        series1.getData().add(new XYChart.Data("SU", 20));
 
         // LineChart Data
-        XYChart.Series<String, Number> series2 = new XYChart.Series();
-        series2.setName("Inside");
-        series2.getData().add(new XYChart.Data("MO", 8));
-        series2.getData().add(new XYChart.Data("TU", 5));
-        series2.getData().add(new XYChart.Data("WE", 0));
-        series2.getData().add(new XYChart.Data("TH", 2));
-        series2.getData().add(new XYChart.Data("FR", 4));
-        series2.getData().add(new XYChart.Data("SA", 3));
-        series2.getData().add(new XYChart.Data("SU", 5));
+//        XYChart.Series<String, Number> series2 = new XYChart.Series();
+//        series2.setName("Inside");
+//        series2.getData().add(new XYChart.Data("MO", 8));
+//        series2.getData().add(new XYChart.Data("TU", 5));
+//        series2.getData().add(new XYChart.Data("WE", 0));
+//        series2.getData().add(new XYChart.Data("TH", 2));
+//        series2.getData().add(new XYChart.Data("FR", 4));
+//        series2.getData().add(new XYChart.Data("SA", 3));
+//        series2.getData().add(new XYChart.Data("SU", 5));
 
-        XYChart.Series<String, Number> series3 = new XYChart.Series();
-        series3.setName("Outside");
-        series3.getData().add(new XYChart.Data("MO", 8));
-        series3.getData().add(new XYChart.Data("TU", 5));
-        series3.getData().add(new XYChart.Data("WE", 0));
-        series3.getData().add(new XYChart.Data("TH", 2));
-        series3.getData().add(new XYChart.Data("FR", 4));
-        series3.getData().add(new XYChart.Data("SA", 3));
-        series3.getData().add(new XYChart.Data("SU", 5));
+//        XYChart.Series<String, Number> series3 = new XYChart.Series();
+//        series3.setName("Outside");
+//        series3.getData().add(new XYChart.Data("MO", 8));
+//        series3.getData().add(new XYChart.Data("TU", 5));
+//        series3.getData().add(new XYChart.Data("WE", 0));
+//        series3.getData().add(new XYChart.Data("TH", 2));
+//        series3.getData().add(new XYChart.Data("FR", 4));
+//        series3.getData().add(new XYChart.Data("SA", 3));
+//        series3.getData().add(new XYChart.Data("SU", 5));
 
         // WorldMap Data
         for (int i = 0; i < Country.values().length ; i++) {
@@ -257,12 +254,12 @@ public class PercentageTile extends Application {
         timeSection.setOnTimeSectionLeft(e -> System.out.println("Section INACTIVE"));
 
         // BarChart Items
-        barChartItem1 = new BarChartItem("Gerrit", 47, Tile.BLUE);
-        barChartItem2 = new BarChartItem("Sandra", 43, Tile.RED);
-        barChartItem3 = new BarChartItem("Lilli", 12, Tile.GREEN);
-        barChartItem4 = new BarChartItem("Anton", 8, Tile.ORANGE);
-
-        barChartItem1.setFormatString("%.1f kWh");
+//        barChartItem1 = new BarChartItem("Gerrit", 47, Tile.BLUE);
+//        barChartItem2 = new BarChartItem("Sandra", 43, Tile.RED);
+//        barChartItem3 = new BarChartItem("Lilli", 12, Tile.GREEN);
+//        barChartItem4 = new BarChartItem("Anton", 8, Tile.ORANGE);
+//
+//        barChartItem1.setFormatString("%.1f kWh");
 
         // LeaderBoard Items
         leaderBoardItem1 = new LeaderBoardItem("Gerrit", 47);
@@ -327,30 +324,30 @@ public class PercentageTile extends Application {
 
         //sparkLineTile.valueProperty().bind(value);
 
-        areaChartTile = TileBuilder.create()
-                                   .skinType(SkinType.SMOOTHED_CHART)
-                                   .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                   .title("SmoothedChart Tile")
-                                   .chartType(ChartType.AREA)
-                                   //.animated(true)
-                                   .smoothing(true)
-                                   .tooltipTimeout(1000)
-                                   .tilesFxSeries(new TilesFXSeries<>(series1,
-                                                               Tile.BLUE,
-                                                               new LinearGradient(0, 0, 0, 1,
-                                                                                  true, CycleMethod.NO_CYCLE,
-                                                                                  new Stop(0, Tile.BLUE),
-                                                                                  new Stop(1, Color.TRANSPARENT))))
-                                   .build();
+//        areaChartTile = TileBuilder.create()
+//                                   .skinType(SkinType.SMOOTHED_CHART)
+//                                   .prefSize(TILE_WIDTH, TILE_HEIGHT)
+//                                   .title("SmoothedChart Tile")
+//                                   .chartType(ChartType.AREA)
+//                                   //.animated(true)
+//                                   .smoothing(true)
+//                                   .tooltipTimeout(1000)
+//                                   .tilesFxSeries(new TilesFXSeries<>(series1,
+//                                                               Tile.BLUE,
+//                                                               new LinearGradient(0, 0, 0, 1,
+//                                                                                  true, CycleMethod.NO_CYCLE,
+//                                                                                  new Stop(0, Tile.BLUE),
+//                                                                                  new Stop(1, Color.TRANSPARENT))))
+//                                   .build();
 
-        lineChartTile = TileBuilder.create()
-                                   .skinType(SkinType.SMOOTHED_CHART)
-                                   .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                   .title("SmoothedChart Tile")
-                                   //.animated(true)
-                                   .smoothing(false)
-                                   .series(series2, series3)
-                                   .build();
+//        lineChartTile = TileBuilder.create()
+//                                   .skinType(SkinType.SMOOTHED_CHART)
+//                                   .prefSize(TILE_WIDTH, TILE_HEIGHT)
+//                                   .title("SmoothedChart Tile")
+//                                   //.animated(true)
+//                                   .smoothing(false)
+//                                   .series(series2, series3)
+//                                   .build();
 
         highLowTile = TileBuilder.create()
                                  .skinType(SkinType.HIGH_LOW)
@@ -445,14 +442,7 @@ public class PercentageTile extends Application {
                               .textVisible(true)
                               .build();
 
-        barChartTile = TileBuilder.create()
-                                  .skinType(SkinType.BAR_CHART)
-                                  .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                  .title("BarChart Tile")
-                                  .text("Whatever text")
-                                  .barChartItems(barChartItem1, barChartItem2, barChartItem3, barChartItem4)
-                                  .decimals(0)
-                                  .build();
+
 
         customTile = TileBuilder.create()
                                 .skinType(SkinType.CUSTOM)
@@ -776,15 +766,7 @@ public class PercentageTile extends Application {
                                   .animated(true)
                                   .build();
 //
-//        imageTile = TileBuilder.create()
-//                               .skinType(SkinType.IMAGE)
-//                               .prefSize(TILE_WIDTH, TILE_HEIGHT)
-//                               .title("Image Tile")
-//                               .image(new Image(PercentageTile.class.getResourceAsStream("HanSolo.png")))
-//                               .imageMask(ImageMask.ROUND)
-//                               .text("Whatever text")
-//                               .textAlignment(TextAlignment.CENTER)
-//                               .build();
+
 
         timelineTile = TileBuilder.create()
                                   .skinType(SkinType.TIMELINE)
@@ -828,15 +810,6 @@ public class PercentageTile extends Application {
                                   .timeoutMs(60000)
                                   .build();
 
-//        imageCounterTile = TileBuilder.create()
-//                                      .skinType(SkinType.IMAGE_COUNTER)
-//                                      .prefSize(TILE_WIDTH, TILE_HEIGHT)
-//                                      .title("ImageCounter Tile")
-//                                      .text("Whatever text")
-//                                      .description("Whatever\nnumbers")
-//                                      .image(new Image(PercentageTile.class.getResourceAsStream("HanSolo.png")))
-//                                      .imageMask(ImageMask.ROUND)
-//                                      .build();
 
         ledTile = TileBuilder.create()
                              .skinType(SkinType.LED)
@@ -1045,29 +1018,6 @@ public class PercentageTile extends Application {
                            .animated(false)
                            .build();
 
-//        turnoverTile = TileBuilder.create().skinType(SkinType.TURNOVER)
-//                                  .prefSize(TILE_WIDTH, TILE_HEIGHT)
-//                                  .title("Turnover Tile")
-//                                  .text("Gerrit Grunwald")
-//                                  .decimals(0)
-//                                  .unit("$")
-//                                  .image(new Image(PercentageTile.class.getResourceAsStream("HanSolo.png")))
-//                                  .animated(true)
-//                                  .checkThreshold(true)
-//                                  .onTileEvent(e -> {
-//                                      if (EventType.THRESHOLD_EXCEEDED == e.getEventType()) {
-//                                          turnoverTile.setRank(firstRank);
-//                                          turnoverTile.setValueColor(firstRank.getColor());
-//                                          turnoverTile.setUnitColor(firstRank.getColor());
-//                                      } else if (EventType.THRESHOLD_UNDERRUN == e.getEventType()) {
-//                                          turnoverTile.setRank(Rank.DEFAULT);
-//                                          turnoverTile.setValueColor(Tile.FOREGROUND);
-//                                          turnoverTile.setUnitColor(Tile.FOREGROUND);
-//                                      }
-//                                  })
-//                                  .threshold(70) // triggers the rotation effect
-//                                  .build();
-
         fluidTile = TileBuilder.create().skinType(SkinType.FLUID)
                                .prefSize(TILE_WIDTH, TILE_HEIGHT)
                                .title("Fluid Tile")
@@ -1173,9 +1123,9 @@ public class PercentageTile extends Application {
                     //sparkLineTile.setValue(20);
 
                     highLowTile.setValue(RND.nextDouble() * 10);
-                    series1.getData().forEach(data -> data.setYValue(RND.nextInt(100)));
-                    series2.getData().forEach(data -> data.setYValue(RND.nextInt(30)));
-                    series3.getData().forEach(data -> data.setYValue(RND.nextInt(10)));
+//                    series1.getData().forEach(data -> data.setYValue(RND.nextInt(100)));
+//                    series2.getData().forEach(data -> data.setYValue(RND.nextInt(30)));
+//                    series3.getData().forEach(data -> data.setYValue(RND.nextInt(10)));
 
                     chartData1.setValue(RND.nextDouble() * 50);
                     chartData2.setValue(RND.nextDouble() * 50);
@@ -1186,7 +1136,7 @@ public class PercentageTile extends Application {
                     chartData7.setValue(RND.nextDouble() * 50);
                     chartData8.setValue(RND.nextDouble() * 50);
 
-                    barChartTile.getBarChartItems().get(RND.nextInt(3)).setValue(RND.nextDouble() * 80);
+//                    barChartTile.getBarChartItems().get(RND.nextInt(3)).setValue(RND.nextDouble() * 80);
 
                     leaderBoardTile.getLeaderBoardItems().get(RND.nextInt(3)).setValue(RND.nextDouble() * 80);
 
@@ -1277,11 +1227,7 @@ public class PercentageTile extends Application {
 
         timer.start();
 
-        mapTile.addPoiLocation(new Location(51.85, 7.75, "Test"));
-        mapTile.removePoiLocation(new Location(51.85, 7.75, "Test"));
 
-        radialPercentageTile.setNotifyRegionTooltipText("tooltip");
-        radialPercentageTile.showNotifyRegion(true);
     }
 
     @Override public void stop() {
