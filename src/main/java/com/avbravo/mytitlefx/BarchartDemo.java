@@ -87,6 +87,7 @@ public class BarchartDemo extends Application {
                 .decimals(0)
                 .build();
 
+   
         circularProgressTile = TileBuilder.create()
                 .skinType(SkinType.CIRCULAR_PROGRESS)
                 .prefSize(TILE_WIDTH, TILE_HEIGHT)
@@ -94,8 +95,7 @@ public class BarchartDemo extends Application {
                 .text("Some text")
                 .unit(Helper.PERCENTAGE)
                 .build();
-
-//       
+      
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
             @Override
