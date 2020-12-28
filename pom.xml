@@ -22,6 +22,12 @@
             <artifactId>tilesfx</artifactId>
             <version>11.45</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>16-ea+5</version>
+            <classifier>linux</classifier>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
