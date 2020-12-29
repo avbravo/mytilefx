@@ -20,6 +20,7 @@ package com.avbravo.mytitlefx;
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.Tile.SkinType;
 import eu.hansolo.tilesfx.TileBuilder;
+import eu.hansolo.tilesfx.chart.ChartData;
 import eu.hansolo.tilesfx.skins.BarChartItem;
 import eu.hansolo.tilesfx.tools.FlowGridPane;
 import eu.hansolo.tilesfx.tools.Helper;
@@ -50,20 +51,27 @@ import java.util.Random;
 /**
  * User: hansolo Date: 19.12.16 Time: 12:54
  */
-public class BarchartDemo extends Application {
+public class PingDemo extends Application {
 
     private static final Random RND = new Random();
     private static final double TILE_WIDTH = 150;
     private static final double TILE_HEIGHT = 150;
     private int noOfNodes = 0;
 
-    private BarChartItem barChartItem1;
-    private BarChartItem barChartItem2;
-    private BarChartItem barChartItem3;
-    private BarChartItem barChartItem4;
+      private ChartData       chartData1;
+    private ChartData       chartData2;
+    private ChartData       chartData3;
+    private ChartData       chartData4;
+    private ChartData       chartData5;
+    private ChartData       chartData6;
+    private ChartData       chartData7;
+    private ChartData       chartData8;
+    
+  
 
-    private Tile barChartTile;
-    private Tile circularProgressTile;
+    private Tile            donutChartTile;
+//    private Tile barChartTile;
+//    private Tile circularProgressTile;
 
  
 
@@ -80,32 +88,26 @@ public class BarchartDemo extends Application {
         long start = System.currentTimeMillis();
         value = new SimpleDoubleProperty(0);
 
-        // BarChart Items
-        barChartItem1 = new BarChartItem("Gerrit", 47, Tile.BLUE);
-        barChartItem2 = new BarChartItem("Sandra", 43, Tile.RED);
-        barChartItem3 = new BarChartItem("Lilli", 12, Tile.GREEN);
-        barChartItem4 = new BarChartItem("Anton", 10, Tile.ORANGE);
+        // Chart Data
+        chartData1 = new ChartData("Item 1", 24.0, Tile.GREEN);
+        chartData2 = new ChartData("Item 2", 10.0, Tile.BLUE);
+        chartData3 = new ChartData("Item 3", 12.0, Tile.RED);
+        chartData4 = new ChartData("Item 4", 13.0, Tile.YELLOW_ORANGE);
+        chartData5 = new ChartData("Item 5", 13.0, Tile.BLUE);
+        chartData6 = new ChartData("Item 6", 13.0, Tile.BLUE);
+        chartData7 = new ChartData("Item 7", 13.0, Tile.BLUE);
+        chartData8 = new ChartData("Item 8", 13.0, Tile.BLUE);
 
-        barChartItem1.setFormatString("%.1f kWh");
 
-        barChartTile = TileBuilder.create()
-                .skinType(SkinType.BAR_CHART)
-                .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                .title("BarChart Tile")
-                .text("Whatever text")
-                .barChartItems(barChartItem1, barChartItem2, barChartItem3, barChartItem4)
-                .decimals(0)
-                .build();
-
-        circularProgressTile = TileBuilder.create()
-                .skinType(SkinType.CIRCULAR_PROGRESS)
-                .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                .title("CircularProgress Tile")
-                .text("Some text")
-                .unit(Helper.PERCENTAGE)
-                .build();
    
-     
+      donutChartTile = TileBuilder.create()
+                                     .skinType(SkinType.DONUT_CHART)
+                                     .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                                     .title("DonutChart Tile")
+                                     .text("Some text")
+                                     .textVisible(false)
+                                     .chartData(chartData1, chartData2)
+                                     .build();
       
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
@@ -113,9 +115,31 @@ public class BarchartDemo extends Application {
             public void handle(long now) {
 
                 if (now > lastTimerCall + 3_500_000_000L) {
-                    barChartTile.getBarChartItems().get(RND.nextInt(4)).setValue(RND.nextDouble() * 80);
-                    circularProgressTile.setValue(RND.nextDouble() * 120);
+                  
+                     chartData1.setValue(okPing);
+                    chartData2.setValue(NokPing);
+//                    chartData3.setValue(RND.nextDouble() * 50);
+//                    chartData4.setValue(RND.nextDouble() * 50);
+//                    chartData5.setValue(RND.nextDouble() * 50);
+//                    chartData6.setValue(RND.nextDouble() * 50);
+//                    chartData7.setValue(RND.nextDouble() * 50);
+//                    chartData8.setValue(RND.nextDouble() * 50);
               
+                    try {
+                      //  ResPing = isReachable("192.168.0.5");
+                      //  ResPing = isReachable("192.168.11.1");
+                        ResPing = isReachable("192.168.0.3");
+                        System.out.println("ResPing: "+ ResPing);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    if (ResPing) {
+                        okPing += 1;
+                    } else {
+                        NokPing += 1;
+                    }
+                    System.out.println("okPing = " + okPing);
+                    System.out.println("NokPing" + NokPing);
 
                     lastTimerCall = now;
                 }
@@ -129,7 +153,7 @@ public class BarchartDemo extends Application {
     public void start(Stage stage) {
         long start = System.currentTimeMillis();
 
-        FlowGridPane pane = new FlowGridPane(8, 6, barChartTile, circularProgressTile);
+        FlowGridPane pane = new FlowGridPane(8, 6, donutChartTile);
 
     
 //        FlowGridPane pane = new FlowGridPane(8, 6,
@@ -198,7 +222,50 @@ public class BarchartDemo extends Application {
         launch(args);
     }
 
-  
+    public static boolean isReachable(String ipAddress) throws IOException {
+        List<String> command = buildCommand(ipAddress);
+        ProcessBuilder processBuilder = new ProcessBuilder(command);
+        Process process = processBuilder.start();
 
+        try (BufferedReader standardOutput = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+            String outputLine;
+            
+            while ((outputLine = standardOutput.readLine()) != null) {
+                // Picks up Windows and Unix unreachable hosts
+                System.out.println("outputLine: " + outputLine);
+//                if (outputLine.toLowerCase().contains("destination host unreachable")) {
+                if (outputLine.toLowerCase().contains("Tiempo de espera agotado") || outputLine.toLowerCase().contains("100% packet loss")  ) {
+                    return false;
+}
+            }
+        }
 
+        return true;
+    }
+
+    private static List<String> buildCommand(String ipAddress) {
+        String SO = System.getProperty("os.name").toLowerCase();
+
+        System.out.println("System operative  --->"+SO);
+        List<String> command = new ArrayList<>();
+        command.add("ping");
+
+        if (SO.indexOf("win") >= 0) // if (SystemUtils.IS_OS_WINDOWS)
+        {
+            command.add("-n");
+            //} else if (SystemUtils.IS_OS_UNIX)
+        } else if (SO.indexOf("nix") >= 0 || SO.indexOf("linux")>=0) {
+            command.add("-c");
+        } else {
+            throw new UnsupportedOperationException("Unsupported operating system");
+        }
+
+        command.add("1");
+        command.add(ipAddress);
+        System.out.println("command: " + command);
+        
+        
+
+        return command;
+    }
 }
