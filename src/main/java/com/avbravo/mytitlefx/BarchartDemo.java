@@ -59,7 +59,7 @@ public class BarchartDemo extends Application {
 
     private Tile barChartTile;
 
-    private Tile circularProgressTile;
+ 
 
     private long lastTimerCall;
     private AnimationTimer timer;
@@ -88,13 +88,7 @@ public class BarchartDemo extends Application {
                 .build();
 
    
-        circularProgressTile = TileBuilder.create()
-                .skinType(SkinType.CIRCULAR_PROGRESS)
-                .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                .title("CircularProgress Tile")
-                .text("Some text")
-                .unit(Helper.PERCENTAGE)
-                .build();
+     
       
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
@@ -102,7 +96,7 @@ public class BarchartDemo extends Application {
             public void handle(long now) {
                 if (now > lastTimerCall + 3_500_000_000L) {
                     barChartTile.getBarChartItems().get(RND.nextInt(4)).setValue(RND.nextDouble() * 80);
-                    circularProgressTile.setValue(RND.nextDouble() * 120);
+              
                     lastTimerCall = now;
                 }
             }
@@ -115,7 +109,7 @@ public class BarchartDemo extends Application {
     public void start(Stage stage) {
         long start = System.currentTimeMillis();
 
-        FlowGridPane pane = new FlowGridPane(8, 6, barChartTile, circularProgressTile);
+        FlowGridPane pane = new FlowGridPane(8, 6, barChartTile);
 
 //        FlowGridPane pane = new FlowGridPane(8, 6,
 //                                             percentageTile, clockTile, gaugeTile, sparkLineTile, areaChartTile,

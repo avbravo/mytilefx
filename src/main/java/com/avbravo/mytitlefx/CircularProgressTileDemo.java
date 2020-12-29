@@ -70,22 +70,7 @@ public class CircularProgressTileDemo extends Application {
         long start = System.currentTimeMillis();
         value = new SimpleDoubleProperty(0);
 
-//        // BarChart Items
-//        barChartItem1 = new BarChartItem("Gerrit", 47, Tile.BLUE);
-//        barChartItem2 = new BarChartItem("Sandra", 43, Tile.RED);
-//        barChartItem3 = new BarChartItem("Lilli", 12, Tile.GREEN);
-//        barChartItem4 = new BarChartItem("Anton", 10, Tile.ORANGE);
-//
-//        barChartItem1.setFormatString("%.1f kWh");
 
-//        barChartTile = TileBuilder.create()
-//                .skinType(SkinType.BAR_CHART)
-//                .prefSize(TILE_WIDTH, TILE_HEIGHT)
-//                .title("BarChart Tile")
-//                .text("Whatever text")
-//                .barChartItems(barChartItem1, barChartItem2, barChartItem3, barChartItem4)
-//                .decimals(0)
-//                .build();
 
    
         circularProgressTile = TileBuilder.create()
