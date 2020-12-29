@@ -1,4 +1,4 @@
-package com.avbravp.mytitlefx;
+package com.avbravo.mytitlefx;
 
 public class SystemInfo {
 

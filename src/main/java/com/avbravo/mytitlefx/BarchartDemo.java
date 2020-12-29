@@ -15,13 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.avbravp.mytitlefx.barchart;
+package com.avbravo.mytitlefx;
 
 import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.Tile.SkinType;
 import eu.hansolo.tilesfx.TileBuilder;
 import eu.hansolo.tilesfx.skins.BarChartItem;
 import eu.hansolo.tilesfx.tools.FlowGridPane;
+import eu.hansolo.tilesfx.tools.Helper;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
@@ -58,6 +59,8 @@ public class BarchartDemo extends Application {
 
     private Tile barChartTile;
 
+ 
+
     private long lastTimerCall;
     private AnimationTimer timer;
     private DoubleProperty value;
@@ -84,13 +87,16 @@ public class BarchartDemo extends Application {
                 .decimals(0)
                 .build();
 
-//       
+   
+     
+      
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
                 if (now > lastTimerCall + 3_500_000_000L) {
                     barChartTile.getBarChartItems().get(RND.nextInt(4)).setValue(RND.nextDouble() * 80);
+              
                     lastTimerCall = now;
                 }
             }
@@ -103,9 +109,8 @@ public class BarchartDemo extends Application {
     public void start(Stage stage) {
         long start = System.currentTimeMillis();
 
-     FlowGridPane pane = new FlowGridPane(8, 6, barChartTile);
-    
-    
+        FlowGridPane pane = new FlowGridPane(8, 6, barChartTile);
+
 //        FlowGridPane pane = new FlowGridPane(8, 6,
 //                                             percentageTile, clockTile, gaugeTile, sparkLineTile, areaChartTile,
 //                                             lineChartTile, timerControlTile, numberTile, textTile,
@@ -119,7 +124,6 @@ public class BarchartDemo extends Application {
 //                                             timelineTile, imageCounterTile, ledTile, countdownTile, matrixIconTile,
 //                                             cycleStepTile, customFlagChartTile, colorTile, turnoverTile, fluidTile, fireSmokeTile,
 //                                             gauge2Tile, happinessTile, radialDistributionTile);
-
         pane.setHgap(5);
         pane.setVgap(5);
         pane.setAlignment(Pos.CENTER);

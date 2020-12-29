@@ -15,9 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.avbravp.mytitlefx.leaderBoardItem;
-
-import com.avbravp.mytitlefx.barchart.*;
+package com.avbravo.mytitlefx;
 
 
 

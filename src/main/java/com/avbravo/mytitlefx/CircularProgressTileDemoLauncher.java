@@ -15,7 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.avbravp.mytitlefx.barchart;
+package com.avbravo.mytitlefx;
+
+import javafx.application.Application;
 
 
 
@@ -24,7 +26,7 @@ package com.avbravp.mytitlefx.barchart;
  * Date: 09.06.19
  * Time: 21:00
  */
-public class BarchartDemoLauncher {
+public class CircularProgressTileDemoLauncher {
 
     /**
      *
@@ -36,6 +38,7 @@ public class BarchartDemoLauncher {
      * @param args application arguments
      */
     public static void main(String[] args) {
-        BarchartDemo.main(args);
+        CircularProgressTileDemo.main(args);
+ //       BarchartDemo.main(args);
     }
 }

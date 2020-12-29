@@ -15,17 +15,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.avbravp.mytitlefx.demoall;
+package com.avbravo.mytitlefx;
 
-import com.avbravo.mytitlefx.BarchartDemo;
-import com.avbravp.mytitlefx.demoall.Demo11;
+
 
 /**
  * User: divine threepwood
  * Date: 09.06.19
  * Time: 21:00
  */
-public class DemoallLauncher {
+public class PercentageTileLauncher {
 
     /**
      *
@@ -37,6 +36,6 @@ public class DemoallLauncher {
      * @param args application arguments
      */
     public static void main(String[] args) {
-        Demo11.main(args);
+       PercentageTileDemo.main(args);
     }
 }
