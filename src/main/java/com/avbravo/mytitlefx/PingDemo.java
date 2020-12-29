@@ -54,8 +54,8 @@ import java.util.Random;
 public class PingDemo extends Application {
 
     private static final Random RND = new Random();
-    private static final double TILE_WIDTH = 150;
-    private static final double TILE_HEIGHT = 150;
+    private static final double TILE_WIDTH = 250;
+    private static final double TILE_HEIGHT = 250;
     private int noOfNodes = 0;
 
       private ChartData       chartData1;
@@ -89,14 +89,9 @@ public class PingDemo extends Application {
         value = new SimpleDoubleProperty(0);
 
         // Chart Data
-        chartData1 = new ChartData("Item 1", 24.0, Tile.GREEN);
-        chartData2 = new ChartData("Item 2", 10.0, Tile.BLUE);
-        chartData3 = new ChartData("Item 3", 12.0, Tile.RED);
-        chartData4 = new ChartData("Item 4", 13.0, Tile.YELLOW_ORANGE);
-        chartData5 = new ChartData("Item 5", 13.0, Tile.BLUE);
-        chartData6 = new ChartData("Item 6", 13.0, Tile.BLUE);
-        chartData7 = new ChartData("Item 7", 13.0, Tile.BLUE);
-        chartData8 = new ChartData("Item 8", 13.0, Tile.BLUE);
+        chartData1 = new ChartData("Ping Ok", 24.0, Tile.GREEN);
+        chartData2 = new ChartData("Ping NotOk", 10.0, Tile.RED);
+        
 
 
    
@@ -118,13 +113,7 @@ public class PingDemo extends Application {
                   
                      chartData1.setValue(okPing);
                     chartData2.setValue(NokPing);
-//                    chartData3.setValue(RND.nextDouble() * 50);
-//                    chartData4.setValue(RND.nextDouble() * 50);
-//                    chartData5.setValue(RND.nextDouble() * 50);
-//                    chartData6.setValue(RND.nextDouble() * 50);
-//                    chartData7.setValue(RND.nextDouble() * 50);
-//                    chartData8.setValue(RND.nextDouble() * 50);
-              
+
                     try {
                       //  ResPing = isReachable("192.168.0.5");
                       //  ResPing = isReachable("192.168.11.1");
@@ -232,7 +221,7 @@ public class PingDemo extends Application {
             
             while ((outputLine = standardOutput.readLine()) != null) {
                 // Picks up Windows and Unix unreachable hosts
-                System.out.println("outputLine: " + outputLine);
+       
 //                if (outputLine.toLowerCase().contains("destination host unreachable")) {
                 if (outputLine.toLowerCase().contains("Tiempo de espera agotado") || outputLine.toLowerCase().contains("100% packet loss")  ) {
                     return false;
@@ -246,7 +235,7 @@ public class PingDemo extends Application {
     private static List<String> buildCommand(String ipAddress) {
         String SO = System.getProperty("os.name").toLowerCase();
 
-        System.out.println("System operative  --->"+SO);
+      
         List<String> command = new ArrayList<>();
         command.add("ping");
 
@@ -262,7 +251,7 @@ public class PingDemo extends Application {
 
         command.add("1");
         command.add(ipAddress);
-        System.out.println("command: " + command);
+
         
         
 
