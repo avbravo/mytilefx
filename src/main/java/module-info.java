@@ -4,5 +4,6 @@ module com.avbravo.mytitlefx {
     exports com.avbravo.mytitlefx;
 
     requires eu.hansolo.tilesfx;
+    
   opens eu.hansolo.tilesfx  to eu.hansolo.tilesfx;
 }
