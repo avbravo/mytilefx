@@ -21,13 +21,10 @@ import eu.hansolo.tilesfx.Tile;
 import eu.hansolo.tilesfx.Tile.SkinType;
 import eu.hansolo.tilesfx.TileBuilder;
 import eu.hansolo.tilesfx.chart.ChartData;
-import eu.hansolo.tilesfx.skins.BarChartItem;
 import eu.hansolo.tilesfx.tools.FlowGridPane;
-import eu.hansolo.tilesfx.tools.Helper;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -47,6 +44,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 /**
  * User: hansolo Date: 19.12.16 Time: 12:54
@@ -58,83 +57,147 @@ public class PingDemo extends Application {
     private static final double TILE_HEIGHT = 250;
     private int noOfNodes = 0;
 
-      private ChartData       chartData1;
-    private ChartData       chartData2;
-    private ChartData       chartData3;
-    private ChartData       chartData4;
-    private ChartData       chartData5;
-    private ChartData       chartData6;
-    private ChartData       chartData7;
-    private ChartData       chartData8;
-    
-  
+    private ChartData chartData1;
+    private ChartData chartData2;
+    private ChartData chartData3;
+    private ChartData chartData4;
 
-    private Tile            donutChartTile;
+    private Tile donutChartTile;
+    private Tile donutChartTile2;
 //    private Tile barChartTile;
 //    private Tile circularProgressTile;
 
- 
-
     private long lastTimerCall;
+    private long lastTimerCall2;
     private AnimationTimer timer;
+    private AnimationTimer timer2;
     private DoubleProperty value;
 
+    private String url1 = "192.168.0.3";
+    private String url2 = "8.8.8.8";
     Integer okPing = 0;
-    Integer NokPing = 0;
-    Boolean ResPing = true;
+    Integer nokPing = 0;
+
+    Integer okPing2 = 0;
+    Integer nokPing2 = 0;
+
+    Boolean resPing = true;
+    Boolean resPing2 = true;
 
     @Override
     public void init() {
         long start = System.currentTimeMillis();
         value = new SimpleDoubleProperty(0);
 
+        okPing = 0;
+        nokPing = 0;
+
+        okPing2 = 0;
+        nokPing2 = 0;
+
+        resPing = true;
+        resPing2 = true;
+
         // Chart Data
         chartData1 = new ChartData("Ping Ok", 24.0, Tile.GREEN);
         chartData2 = new ChartData("Ping NotOk", 10.0, Tile.RED);
-        
+        chartData3 = new ChartData("Ping Ok", 24.0, Tile.GREEN);
+        chartData4 = new ChartData("Ping NotOk", 10.0, Tile.RED);
 
+        donutChartTile = TileBuilder.create()
+                .skinType(SkinType.DONUT_CHART)
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .title(url1)
+                .text("Some text")
+                .textVisible(false)
+                .chartData(chartData1, chartData2)
+                .build();
+        donutChartTile2 = TileBuilder.create()
+                .skinType(SkinType.DONUT_CHART)
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .title(url2)
+                .text("Some text")
+                .textVisible(false)
+                .chartData(chartData3, chartData4)
+                .build();
 
-   
-      donutChartTile = TileBuilder.create()
-                                     .skinType(SkinType.DONUT_CHART)
-                                     .prefSize(TILE_WIDTH, TILE_HEIGHT)
-                                     .title("DonutChart Tile")
-                                     .text("Some text")
-                                     .textVisible(false)
-                                     .chartData(chartData1, chartData2)
-                                     .build();
-      
         lastTimerCall = System.nanoTime();
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                try {
+                    if (now > lastTimerCall + 3_500_000_000L) {
+System.out.println("==================== future1=========================");
+                        // Run a task specified by a Runnable Object asynchronously.
+                        CompletableFuture<Void> future = CompletableFuture.runAsync(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Simulate a long-running Job
+                                System.out.println("....,, ejecutando el run");
 
-                if (now > lastTimerCall + 3_500_000_000L) {
-                  
-                     chartData1.setValue(okPing);
-                    chartData2.setValue(NokPing);
+                                try {
+                                    //  TimeUnit.SECONDS.sleep(1);
+                                    System.out.println("----------------------------------------------");
+                                    print();
+                                    System.out.println(" call ResPing = isReachable(url1);" + JavscazUtil.getFechaHoraActual());
+                                    resPing = isReachable(url1);
 
-                    try {
-                      //  ResPing = isReachable("192.168.0.5");
-                      //  ResPing = isReachable("192.168.11.1");
-                        ResPing = isReachable("192.168.0.3");
-                        System.out.println("ResPing: "+ ResPing);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
+                                    System.out.println("ResPing: " + resPing);
+
+                                    if (resPing) {
+                                        okPing += 1;
+                                    } else {
+                                        nokPing += 1;
+                                    }
+                                    chartData1.setValue(okPing);
+                                    chartData2.setValue(nokPing);
+                                } catch (Exception e) {
+                                    throw new IllegalStateException(e);
+                                }
+                                System.out.println("I'll run in a separate thread than the main thread.");
+                            }
+                        });
+                        
+                        System.out.println("==================== future2=========================");
+                        // Run a task specified by a Runnable Object asynchronously.
+                        CompletableFuture<Void> future2 = CompletableFuture.runAsync(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Simulate a long-running Job
+                                System.out.println("....,, ejecutando el run2");
+
+                                try {
+                                    //  TimeUnit.SECONDS.sleep(1);
+                                    System.out.println("----------------------------------------------");
+                                    print();
+                                    System.out.println(" call ResPing = isReachable(url1);" + JavscazUtil.getFechaHoraActual());
+                                    resPing2 = isReachable(url2);
+
+                                    System.out.println("ResPing2: " + resPing2);
+
+                                    if (resPing2) {
+                                        okPing2 ++;
+                                    } else {
+                                        nokPing2 ++;
+                                    }
+                                    chartData3.setValue(okPing2);
+                                    chartData4.setValue(nokPing2);
+                                } catch (Exception e) {
+                                    throw new IllegalStateException(e);
+                                }
+                                System.out.println("I'll run in a separate thread than the main thread.");
+                            }
+                        });
+
+                        lastTimerCall = now;
                     }
-                    if (ResPing) {
-                        okPing += 1;
-                    } else {
-                        NokPing += 1;
-                    }
-                    System.out.println("okPing = " + okPing);
-                    System.out.println("NokPing" + NokPing);
 
-                    lastTimerCall = now;
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             }
         };
-
+       
         System.out.println("Initialization: " + (System.currentTimeMillis() - start) + "ms");
     }
 
@@ -142,9 +205,8 @@ public class PingDemo extends Application {
     public void start(Stage stage) {
         long start = System.currentTimeMillis();
 
-        FlowGridPane pane = new FlowGridPane(8, 6, donutChartTile);
+        FlowGridPane pane = new FlowGridPane(8, 6, donutChartTile, donutChartTile2);
 
-    
 //        FlowGridPane pane = new FlowGridPane(8, 6,
 //                                             percentageTile, clockTile, gaugeTile, sparkLineTile, areaChartTile,
 //                                             lineChartTile, timerControlTile, numberTile, textTile,
@@ -158,7 +220,6 @@ public class PingDemo extends Application {
 //                                             timelineTile, imageCounterTile, ledTile, countdownTile, matrixIconTile,
 //                                             cycleStepTile, customFlagChartTile, colorTile, turnoverTile, fluidTile, fireSmokeTile,
 //                                             gauge2Tile, happinessTile, radialDistributionTile);
-
         pane.setHgap(5);
         pane.setVgap(5);
         pane.setAlignment(Pos.CENTER);
@@ -184,6 +245,7 @@ public class PingDemo extends Application {
         System.out.println("Nodes in Scene: " + noOfNodes);
 
         timer.start();
+       // timer2.start();
 
     }
 
@@ -212,49 +274,51 @@ public class PingDemo extends Application {
     }
 
     public static boolean isReachable(String ipAddress) throws IOException {
-        List<String> command = buildCommand(ipAddress);
+        List<String> command = JavscazUtil.buildCommandPing(ipAddress);
         ProcessBuilder processBuilder = new ProcessBuilder(command);
         Process process = processBuilder.start();
 
         try (BufferedReader standardOutput = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
             String outputLine;
-            
+
             while ((outputLine = standardOutput.readLine()) != null) {
                 // Picks up Windows and Unix unreachable hosts
-       
+
 //                if (outputLine.toLowerCase().contains("destination host unreachable")) {
-                if (outputLine.toLowerCase().contains("Tiempo de espera agotado") || outputLine.toLowerCase().contains("100% packet loss")  ) {
+                if (outputLine.toLowerCase().contains("Tiempo de espera agotado") || outputLine.toLowerCase().contains("100% packet loss")) {
                     return false;
-}
+                }
             }
         }
-
+        System.out.println("finalizo  isReachable()");
         return true;
     }
 
-    private static List<String> buildCommand(String ipAddress) {
-        String SO = System.getProperty("os.name").toLowerCase();
+    public static boolean isReachable2(String ipAddress) throws IOException {
+        List<String> command = JavscazUtil.buildCommandPing(ipAddress);
+        ProcessBuilder processBuilder = new ProcessBuilder(command);
+        Process process = processBuilder.start();
 
-      
-        List<String> command = new ArrayList<>();
-        command.add("ping");
+        try (BufferedReader standardOutput = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+            String outputLine = "";
 
-        if (SO.indexOf("win") >= 0) // if (SystemUtils.IS_OS_WINDOWS)
-        {
-            command.add("-n");
-            //} else if (SystemUtils.IS_OS_UNIX)
-        } else if (SO.indexOf("nix") >= 0 || SO.indexOf("linux")>=0) {
-            command.add("-c");
-        } else {
-            throw new UnsupportedOperationException("Unsupported operating system");
+            while ((outputLine = standardOutput.readLine()) != null) {
+                // Picks up Windows and Unix unreachable hosts
+
+//                if (outputLine.toLowerCase().contains("destination host unreachable")) {
+                if (outputLine.toLowerCase().contains("Tiempo de espera agotado") || outputLine.toLowerCase().contains("100% packet loss")) {
+                    return false;
+                }
+            }
         }
-
-        command.add("1");
-        command.add(ipAddress);
-
-        
-        
-
-        return command;
+        System.out.println("finalizo  isReachable2()");
+        return true;
     }
+
+    private void print() {
+        System.out.println("-------------------------------------");
+        System.out.println(url1 + "  {" + okPing + " : " + nokPing + "} " + url2 + "  {" + okPing2 + " :" + nokPing2 + " }");
+        System.out.println("-------------------------------------");
+    }
+
 }
