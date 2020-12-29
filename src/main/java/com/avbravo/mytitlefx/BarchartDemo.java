@@ -23,6 +23,11 @@ import eu.hansolo.tilesfx.TileBuilder;
 import eu.hansolo.tilesfx.skins.BarChartItem;
 import eu.hansolo.tilesfx.tools.FlowGridPane;
 import eu.hansolo.tilesfx.tools.Helper;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
@@ -58,12 +63,17 @@ public class BarchartDemo extends Application {
     private BarChartItem barChartItem4;
 
     private Tile barChartTile;
+    private Tile circularProgressTile;
 
  
 
     private long lastTimerCall;
     private AnimationTimer timer;
     private DoubleProperty value;
+
+    Integer okPing = 0;
+    Integer NokPing = 0;
+    Boolean ResPing = true;
 
     @Override
     public void init() {
@@ -87,6 +97,13 @@ public class BarchartDemo extends Application {
                 .decimals(0)
                 .build();
 
+        circularProgressTile = TileBuilder.create()
+                .skinType(SkinType.CIRCULAR_PROGRESS)
+                .prefSize(TILE_WIDTH, TILE_HEIGHT)
+                .title("CircularProgress Tile")
+                .text("Some text")
+                .unit(Helper.PERCENTAGE)
+                .build();
    
      
       
@@ -94,9 +111,25 @@ public class BarchartDemo extends Application {
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+
                 if (now > lastTimerCall + 3_500_000_000L) {
                     barChartTile.getBarChartItems().get(RND.nextInt(4)).setValue(RND.nextDouble() * 80);
+                    circularProgressTile.setValue(RND.nextDouble() * 120);
               
+                    try {
+                        ResPing = isReachable("192.168.11.1");
+                        System.out.println("ResPing: "+ ResPing);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    if (ResPing) {
+                        okPing += 1;
+                    } else {
+                        NokPing += 1;
+                    }
+                    System.out.println("okPing = " + okPing);
+                    System.out.println("NokPing" + NokPing);
+
                     lastTimerCall = now;
                 }
             }
@@ -109,8 +142,9 @@ public class BarchartDemo extends Application {
     public void start(Stage stage) {
         long start = System.currentTimeMillis();
 
-        FlowGridPane pane = new FlowGridPane(8, 6, barChartTile);
+        FlowGridPane pane = new FlowGridPane(8, 6, barChartTile, circularProgressTile);
 
+    
 //        FlowGridPane pane = new FlowGridPane(8, 6,
 //                                             percentageTile, clockTile, gaugeTile, sparkLineTile, areaChartTile,
 //                                             lineChartTile, timerControlTile, numberTile, textTile,
@@ -124,6 +158,7 @@ public class BarchartDemo extends Application {
 //                                             timelineTile, imageCounterTile, ledTile, countdownTile, matrixIconTile,
 //                                             cycleStepTile, customFlagChartTile, colorTile, turnoverTile, fluidTile, fireSmokeTile,
 //                                             gauge2Tile, happinessTile, radialDistributionTile);
+
         pane.setHgap(5);
         pane.setVgap(5);
         pane.setAlignment(Pos.CENTER);
@@ -174,5 +209,51 @@ public class BarchartDemo extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public static boolean isReachable(String ipAddress) throws IOException {
+        List<String> command = buildCommand(ipAddress);
+        ProcessBuilder processBuilder = new ProcessBuilder(command);
+        Process process = processBuilder.start();
+
+        try (BufferedReader standardOutput = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
+            String outputLine;
+            
+            while ((outputLine = standardOutput.readLine()) != null) {
+                // Picks up Windows and Unix unreachable hosts
+                System.out.println("outputLine: " + outputLine);
+//                if (outputLine.toLowerCase().contains("destination host unreachable")) {
+                if (outputLine.toLowerCase().contains("Tiempo de espera agotado")) {
+                    return false;
+}
+            }
+        }
+
+        return true;
+    }
+
+    private static List<String> buildCommand(String ipAddress) {
+        String SO = System.getProperty("os.name").toLowerCase();
+
+        List<String> command = new ArrayList<>();
+        command.add("ping");
+
+        if (SO.indexOf("win") >= 0) // if (SystemUtils.IS_OS_WINDOWS)
+        {
+            command.add("-n");
+            //} else if (SystemUtils.IS_OS_UNIX)
+        } else if (SO.indexOf("nix") >= 0) {
+            command.add("-c");
+        } else {
+            throw new UnsupportedOperationException("Unsupported operating system");
+        }
+
+        command.add("1");
+        command.add(ipAddress);
+        System.out.println("command: " + command);
+        
+        
+
+        return command;
     }
 }
