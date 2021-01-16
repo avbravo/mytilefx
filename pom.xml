@@ -29,15 +29,7 @@
             <classifier>linux</classifier>
         </dependency>
         
-        <!--
-Jmoordb
-        -->
-                
-<!--        <dependency>
-            <groupId>com.github.avbravo</groupId>
-            <artifactId>jmoordbutils</artifactId>
-            <version>1.22</version>
-        </dependency>-->
+
                 
     </dependencies>
     <build>
@@ -55,16 +47,11 @@ Jmoordb
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.5</version>
                 <configuration>
-                    <mainClass>com.avbravp.mytitlefx.App</mainClass>
+                    <mainClass>com.avbravo.mytitlefx.App</mainClass>
                 </configuration>
             </plugin>
         </plugins>
     </build>
     
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
+  
 </project>

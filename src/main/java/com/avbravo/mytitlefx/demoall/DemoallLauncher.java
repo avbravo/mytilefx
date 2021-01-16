@@ -15,10 +15,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.avbravp.mytitlefx.demoall;
+package com.avbravo.mytitlefx.demoall;
 
-import com.avbravo.mytitlefx.BarchartDemo;
-import com.avbravp.mytitlefx.demoall.Demo11;
+
 
 /**
  * User: divine threepwood

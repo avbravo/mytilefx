@@ -38,7 +38,8 @@ public class PingDemoLauncher {
      * @param args application arguments
      */
     public static void main(String[] args) {
-          Application.launch(PingDemo.class, args);
+  
+          Application.launch(PingDemo.class, args);  
  //       BarchartDemo.main(args);
     }
 }
